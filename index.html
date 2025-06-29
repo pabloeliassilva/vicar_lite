@@ -9,14 +9,15 @@
     :root { --primary-color: #0063a3; --secondary-color: #e67e22; --light-gray: #f4f4f9; --dark-text: #333; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-gray); display: flex; flex-direction: column; min-height: 100vh; }
     .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; width: 95%; }
-   
+    
     /* Encabezado */
     .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
     .header .main-banner { max-width: 220px; height: auto; margin-bottom: 20px; }
     .event-title { font-size: 1.8em; color: var(--dark-text); margin: 15px 0; font-weight: bold; }
+    .event-tag-container { max-width: 800px; margin: 0 auto; }
     .event-tag { font-size: 1.1em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: var(--primary-color); }
-   
+    
     /* Navegación y Botones de Ordenamiento */
     .nav-container, .sort-controls { text-align: center; padding: 15px 10px; }
     .nav-container { background-color: #f8f8f8; border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
@@ -28,7 +29,6 @@
     .sort-button { background-color: #6c757d; font-size: 0.9em; }
     .sort-button:hover { background-color: #5a6268; }
     .sort-button.active { background-color: var(--primary-color); font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-
 
     /* Contenido de Categoría y Tarjetas */
     .category-title { font-size: 1.8em; text-align: center; color: var(--dark-text); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 30px; margin-bottom: 30px; }
@@ -42,19 +42,18 @@
     .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; }
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
 
-
-    /* --- ESTILOS DE TABLA RESPONSIVA --- */
+    /* Estilos de Tabla Responsiva */
     .table-container { width: 100%; overflow-x: auto; }
     .lotes-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white; }
     .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; }
     .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
     .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; }
-   
+    
     /* Pie de página */
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
-   
-    /* Media Queries para Tablets y Escritorios Pequeños */
+    
+    /* Media Queries */
     @media (min-width: 769px) {
       .video-grid { grid-template-columns: repeat(2, 1fr); }
       .maps-grid-container { grid-template-columns: repeat(2, 1fr); }
@@ -63,42 +62,17 @@
       .video-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
-
-    /* --- REGLAS PARA VISTA MÓVIL (MENOS DE 768px) --- */
     @media screen and (max-width: 768px) {
       .event-title { font-size: 1.5em; }
       .event-tag, .nav-button, .sort-button, .footer p { font-size: 0.9em; }
       .nav-button, .sort-button { padding: 8px 12px; }
-
-
-      /* --- La magia para la tabla responsiva --- */
       .lotes-table { box-shadow: none; }
       .lotes-table thead { display: none; }
       .lotes-table, .lotes-table tbody, .lotes-table tr, .lotes-table td { display: block; width: 100%; box-sizing: border-box;}
-      .lotes-table tr {
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      }
-      .lotes-table td {
-        text-align: right; /* Alinea el valor a la derecha */
-        padding-left: 50%; /* Deja espacio para la etiqueta */
-        position: relative;
-        border: none;
-        border-bottom: 1px solid #eee;
-      }
+      .lotes-table tr { margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+      .lotes-table td { text-align: right; padding-left: 50%; position: relative; border: none; border-bottom: 1px solid #eee; }
       .lotes-table td:last-child { border-bottom: none; }
-      .lotes-table td::before {
-        content: attr(data-label); /* Usa el atributo data-label como contenido */
-        position: absolute;
-        left: 15px;
-        width: calc(50% - 20px);
-        text-align: left;
-        font-weight: bold;
-        color: var(--dark-text);
-      }
+      .lotes-table td::before { content: attr(data-label); position: absolute; left: 15px; width: calc(50% - 20px); text-align: left; font-weight: bold; color: var(--dark-text); }
     }
   </style>
 </head>
