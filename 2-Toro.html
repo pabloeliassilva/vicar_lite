@@ -26,10 +26,12 @@
     .nav-button:hover { background-color: #004a7c; }
     .nav-button.active { background-color: #e67e22; }
     .container { max-width: 900px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
+    /* **** NUEVO: Estilo para el contenedor del mapa en la página de inicio **** */
+    .container.map-container { max-width: 80%; }
     .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; }
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 30px; overflow: hidden; }
-    /* CAMBIO: Se aumenta el padding-bottom para hacer el contenedor del video/mapa más alto */
-    .video-wrapper { position: relative; padding-bottom: 112.5%; /* Originalmente 56.25% */ height: 0; }
+    /* **** CAMBIO: Se ajusta el padding para una proporción 16:9 estándar, corrigiendo el aspecto de los videos **** */
+    .video-wrapper { position: relative; padding-bottom: 56.25%; /* Proporción 16:9 */ height: 0; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     .card-content { padding: 15px; text-align: center; }
     .card .category-title { border-bottom: none; margin-top: 0; }
@@ -52,8 +54,9 @@
       <hr class="separator">
     </header>
   <nav class="nav-container">
-    <a href="index.html" class="nav-button">Inicio</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button active">2️⃣ Toro</a>
+    <a href="index.html" class="nav-button ">Inicio</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button active">2️⃣ Toro</a>
   </nav>
+  // **** CAMBIO: Se agrega la clase 'map-container' dinámicamente en la página de inicio ****
   <main class="container">
     <h2 class="category-title">2️⃣ Toro</h2>
 <div class="card">
