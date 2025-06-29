@@ -28,16 +28,15 @@
     /* Contenido de Categoría */
     .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
     
-    /* ---- MODIFICADO / EXPLICADO ---- */
-    /* Grilla de Videos Responsiva: 3, 2 o 1 columna automáticamente */
-    .video-grid { 
-        display: grid;
-        /* 'auto-fit' ajusta el número de columnas al espacio disponible. */
-        /* 'minmax(320px, 1fr)' define que cada columna tendrá un mínimo de 320px y se expandirá para ocupar el espacio sobrante. */
-        /* Esto resulta en 3 columnas en pantallas anchas (>1050px), 2 en medianas (>700px) y 1 en móviles. */
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 25px; 
-    }
+   /* ---- CORREGIDO PARA MEJOR COMPATIBILIDAD ---- */
+/* Grilla de Videos Responsiva: 3, 2 o 1 columna automáticamente */
+.video-grid {
+  display: grid;
+  /* Se reduce el mínimo a 300px para mayor flexibilidad en notebooks.
+     Esto facilita que entren 2 o 3 columnas en un rango más amplio de anchos de pantalla. */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
     
     /* Tarjetas (para videos y mapa) */
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
