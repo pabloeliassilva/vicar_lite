@@ -44,20 +44,18 @@
     .card-description b { color: #333; }
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
 
-    /* --- CAMBIO: Grilla para los mapas --- */
-    .maps-grid-container {
-      display: grid;
-      gap: 20px;
-      /* Por defecto, los mapas se apilan uno sobre otro en pantallas pequeñas */
-      grid-template-columns: 1fr;
-    }
+    /* Grilla para los mapas */
+    .maps-grid-container { display: grid; gap: 20px; grid-template-columns: 1fr; }
+    @media (min-width: 769px) { .maps-grid-container { grid-template-columns: repeat(2, 1fr); } }
     
-    /* En pantallas más grandes (ancho > 768px), se muestran en dos columnas */
-    @media (min-width: 769px) {
-      .maps-grid-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+    /* --- ¡NUEVO! Estilos para la tabla de Lotes --- */
+    .table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .lotes-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.9em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; }
+    .lotes-table th { background-color: #0063a3; color: white; font-weight: bold; }
+    .lotes-table tbody tr { background-color: #ffffff; }
+    .lotes-table tbody tr:nth-child(even) { background-color: #eaf4ff; } /* Azul temático muy clarito */
+    .lotes-table tbody tr:hover { background-color: #dcecfc; }
     
     /* Pie de página */
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
@@ -69,12 +67,14 @@
       .event-title { font-size: 1.6em; }
       .event-tag { font-size: 1.0em; }
       .nav-button { padding: 8px 15px; font-size: 0.9em; }
+      .lotes-table { font-size: 0.8em; }
+      .lotes-table th, .lotes-table td { padding: 8px 10px; }
     }
   </style>
 </head>
 <body>
   
-      
+    
     <header class="header">
       <img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner">
       <h1 class="event-title">Remate Hacienda General etc</h1>
@@ -82,14 +82,14 @@
         <p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p>
       </div>
     </header>
-      <nav class="nav-container">
-        <a href="index.html" class="nav-button ">Inicio</a><a href="1-Gordo.html" class="nav-button active">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a>
-      </nav>
+    <nav class="nav-container">
+      <a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button active">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a>
+    </nav>
+    
       <main class="container">
-        
         <h2 class="category-title">1️⃣ Gordo</h2>
         <div class="video-grid">
-            
+          
 <div class="card">
   <div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -104,12 +104,10 @@
   </div>
 </div>
         </div>
-    
       </main>
-      
+    
     <footer class="footer">
       <p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p>
     </footer>
-    
 </body>
 </html>
