@@ -7,6 +7,7 @@
       --border-color: #ddd; --table-row-even-bg: #f8f8f8; --table-row-hover-bg: #e9ecef;
       --button-secondary-bg: #6c757d; --button-secondary-hover: #5a6268; --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
       --qr-button-bg: #555; --qr-button-hover: #333;
+      --countdown-bg: #005a9e; --countdown-text: #ffffff;
     }
     html.dark-mode {
       --bg-color: #1a202c; --card-bg-color: #2d3748; --text-color: #E2E8F0; --text-color-light: #A0AEC0;
@@ -15,19 +16,11 @@
       --border-color: #4A5568; --table-row-even-bg: #2c3a4f; --table-row-hover-bg: #3a4b64;
       --button-secondary-bg: #4A5568; --button-secondary-hover: #2D3748; --card-shadow: 0 4px 8px rgba(0,0,0,0.3);
       --qr-button-bg: #A0AEC0; --qr-button-hover: #718096;
+      --countdown-bg: #F6AD55; --countdown-text: #1a202c;
     }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; transition: background-color 0.3s, color 0.3s; }
-    
-    /* ================================================================= */
-    /* ===== ¡NUEVO! ESTILOS PARA EL BANNER DEL TEMPORIZADOR ========= */
-    /* ================================================================= */
-    #event-timer-banner { display: none; /* Se muestra con JS */ position: sticky; top: 0; padding: 12px; text-align: center; font-weight: bold; font-size: 1.2em; width: 100%; box-sizing: border-box; z-index: 1001; color: white; background-color: #333; transition: background-color 0.5s; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
-    #event-timer-banner.countdown { background-color: var(--primary-color-hover, #004a7c); }
-    #event-timer-banner.now { background-color: #28a745; animation: pulse-green 2s infinite; }
-    #event-timer-banner.finished { background-color: var(--button-secondary-bg, #6c757d); }
-    @keyframes pulse-green { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); } }
-    @media (max-width: 768px) { #event-timer-banner { font-size: 1em; padding: 10px; } }
-
+    #countdown-banner { background-color: var(--countdown-bg); color: var(--countdown-text); text-align: center; padding: 12px; transition: background-color 0.3s, color 0.3s; }
+    #countdown-banner h3 { margin: 0; font-weight: bold; font-size: 1.2rem; letter-spacing: 1px; }
     .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; width: 95%; }
     .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid var(--border-color); background-color: var(--header-bg-color); transition: background-color 0.3s, border-color 0.3s; }
     .header .main-banner { max-width: 220px; height: auto; margin-bottom: 20px; }
@@ -75,7 +68,7 @@
       .lotes-table td { text-align: right; padding-left: 50%; position: relative; border: none; border-bottom: 1px solid var(--border-color); } .lotes-table td:last-child { border-bottom: none; }
       .lotes-table td::before { content: attr(data-label); position: absolute; left: 15px; width: calc(50% - 20px); text-align: left; font-weight: bold; color: var(--text-color); }
     }
-  </style></head><body><div id="event-timer-banner"></div><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button active">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button " data-column="corral" data-label="Corral" data-order="asc">Corral </button>
+  </style></head><body><div id="countdown-banner"></div><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button active">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button " data-column="corral" data-label="Corral" data-order="asc">Corral </button>
 <button class="sort-button " data-column="grupo" data-label="Grupo" data-order="asc">Grupo </button>
 <button class="sort-button " data-column="categoria" data-label="Categoría" data-order="asc">Categoría </button>
 <button class="sort-button active" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
@@ -146,6 +139,56 @@
         });
       </script>
     <script>
+      (function() {
+        const countdownBanner = document.getElementById('countdown-banner');
+        if (!countdownBanner) return;
+
+        // Las fechas se deben pasar en un formato que JS pueda interpretar, como ISO 8601
+        const fechaInicio = new Date('Thu Jul 03 2025 14:30:00 GMT-0300 (GMT-03:00)').getTime();
+        const fechaFinal = new Date('Thu Jul 03 2025 20:00:00 GMT-0300 (GMT-03:00)').getTime();
+
+        function updateBanner() {
+            const ahora = new Date().getTime();
+
+            if (isNaN(fechaInicio) || isNaN(fechaFinal)) {
+                countdownBanner.style.display = 'none';
+                return;
+            }
+
+            if (ahora > fechaFinal) {
+              countdownBanner.innerHTML = '<h3>🔨 Remate Finalizado</h3>';
+              countdownBanner.style.backgroundColor = '#c0392b'; // Rojo oscuro
+              if(document.documentElement.classList.contains('dark-mode')) {
+                countdownBanner.style.backgroundColor = '#e74c3c'; // Rojo más brillante para modo oscuro
+              }
+              return;
+            }
+
+            if (ahora >= fechaInicio && ahora <= fechaFinal) {
+              countdownBanner.innerHTML = '<h3>🐮 AHORA 🐄</h3>';
+              countdownBanner.style.backgroundColor = '#27ae60'; // Verde
+               if(document.documentElement.classList.contains('dark-mode')) {
+                countdownBanner.style.backgroundColor = '#2ecc71'; // Verde más brillante para modo oscuro
+              }
+              return;
+            }
+
+            const distance = fechaInicio - ahora;
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownBanner.innerHTML = '<h3>Comienza en: ' + days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ' + '</h3>';
+            }
+        }
+
+        updateBanner(); // Primera ejecución
+        setInterval(updateBanner, 1000); // Actualiza cada segundo
+      })();
+    </script>
+    <script>
       const qrModal = document.getElementById('qrModal');
       const qrModalTitle = document.getElementById('qrModalTitle');
       const qrModalImage = document.getElementById('qrModalImage');
@@ -165,6 +208,7 @@
         }
       }
 
+      // Cerrar el modal si se hace clic fuera del contenido
       window.addEventListener('click', function(event) {
         if (event.target == qrModal) {
           hideQrPopup();
@@ -193,66 +237,4 @@
       applyTheme(savedTheme);
       themeToggle.addEventListener('click', () => { const currentTheme = htmlElement.classList.contains('dark-mode') ? 'dark' : 'light'; const newTheme = currentTheme === 'dark' ? 'light' : 'dark'; localStorage.setItem('vicar-theme', newTheme); applyTheme(newTheme); });
     })();
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const banner = document.getElementById('event-timer-banner');
-      const fechaInicioStr = "";
-      const fechaFinalStr = "2025-07-03T17:30:00.000Z";
-
-      if (!fechaInicioStr || !banner) {
-        if (banner) banner.style.display = 'none';
-        return;
-      }
-
-      const fechaInicio = new Date(fechaInicioStr);
-      const fechaFinal = fechaFinalStr ? new Date(fechaFinalStr) : null;
-      let timerInterval = null;
-
-      const updateBanner = () => {
-        const ahora = new Date();
-        
-        // 1. Antes del evento: Muestra la cuenta regresiva.
-        if (ahora < fechaInicio) {
-          banner.style.display = 'block';
-          banner.className = 'countdown';
-          const diff = fechaInicio.getTime() - ahora.getTime();
-          const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          const s = Math.floor((diff % (1000 * 60)) / 1000);
-          banner.innerHTML = `⏰ Para el inicio faltan: ${d}d ${h}h ${m}m ${s}s`;
-          if (!timerInterval) {
-            timerInterval = setInterval(updateBanner, 1000);
-          }
-          return;
-        }
-
-        // Si ya no es cuenta regresiva, se limpia el intervalo.
-        if (timerInterval) clearInterval(timerInterval);
-
-        // 2. Después del evento: Muestra "Remate Finalizado".
-        if (fechaFinal && ahora > fechaFinal) {
-          banner.style.display = 'block';
-          banner.className = 'finished';
-          banner.innerHTML = '🔨 Remate Finalizado';
-          return;
-        }
-        
-        // 3. Durante el evento: Muestra "AHORA".
-        // Esta condición se cumple si (ahora >= fechaInicio) y la condición "Finalizado" no se cumplió.
-        if (ahora >= fechaInicio) {
-          banner.style.display = 'block';
-          banner.className = 'now';
-          banner.innerHTML = '🐮 AHORA 🐄';
-          return;
-        }
-
-        // Si ninguna condición se cumple, se oculta el banner.
-        banner.style.display = 'none';
-      };
-
-      updateBanner();
-    });
-  </script>
-  </body></html>
+  </script></body></html>
