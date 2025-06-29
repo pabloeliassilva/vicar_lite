@@ -14,16 +14,10 @@
     .event-tag-container { max-width: 800px; margin: 0 auto; }
     .event-tag { font-size: 1.1em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: var(--primary-color); }
-    .nav-container, .sort-controls { text-align: center; padding: 15px 10px; background-color: #f8f8f8; }
-    .nav-container { border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
-    .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; border-bottom: 1px solid #ddd; }
-    .nav-button, .sort-button { text-decoration: none; border: none; color: white; padding: 10px 18px; margin: 0; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
-    .nav-button { background-color: var(--primary-color); }
+    .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
+    .nav-button { text-decoration: none; border: none; color: white; padding: 10px 18px; margin: 0; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s, transform 0.2s; background-color: var(--primary-color); }
     .nav-button:hover { background-color: #004a7c; transform: translateY(-2px); }
     .nav-button.active { background-color: var(--secondary-color); }
-    .sort-button { background-color: #6c757d; font-size: 0.9em; }
-    .sort-button:hover { background-color: #5a6268; }
-    .sort-button.active { background-color: var(--primary-color); font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
     .category-title { font-size: 1.8em; text-align: center; color: var(--dark-text); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 10px; margin-bottom: 30px; }
     .video-grid, .maps-grid-container { display: grid; gap: 25px; grid-template-columns: 1fr; }
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
@@ -37,7 +31,8 @@
     .table-container { width: 100%; overflow-x: auto; margin-top: 10px; }
     .lotes-table { border-collapse: collapse; width: 100%; margin: 0; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white; }
     .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; }
-    .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
+    .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; position: relative; } /* ¡MODIFICADO! Añadido position relative */
+    .lotes-table th.active { background-color: var(--secondary-color); } /* ¡NUEVO! Estilo para el header activo */
     .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; }
     .lotes-table tbody tr:hover { background-color: #e9ecef; }
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
@@ -46,8 +41,8 @@
     @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
     @media screen and (max-width: 768px) {
       .event-title { font-size: 1.5em; }
-      .event-tag, .nav-button, .sort-button, .footer p { font-size: 0.9em; }
-      .nav-button, .sort-button { padding: 8px 12px; }
+      .event-tag, .nav-button, .footer p { font-size: 0.9em; }
+      .nav-button { padding: 8px 12px; }
       .lotes-table { box-shadow: none; }
       .lotes-table thead { display: none; }
       .lotes-table, .lotes-table tbody, .lotes-table tr, .lotes-table td { display: block; width: 100%; box-sizing: border-box;}
@@ -58,17 +53,7 @@
     }
   </style>
 </head>
-<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button active">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button " data-column="corral" data-label="Corral" data-order="asc">Corral </button>
-<button class="sort-button " data-column="grupo" data-label="Grupo" data-order="asc">Grupo </button>
-<button class="sort-button " data-column="categoria" data-label="Categoría" data-order="asc">Categoría </button>
-<button class="sort-button active" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
-<button class="sort-button " data-column="peso" data-label="Peso" data-order="desc">Peso </button>
-<button class="sort-button " data-column="plazo" data-label="Plazo" data-order="asc">Plazo </button>
-<button class="sort-button " data-column="sanidad" data-label="Sanidad" data-order="asc">Sanidad </button>
-<button class="sort-button " data-column="china" data-label="China" data-order="asc">China </button>
-<button class="sort-button " data-column="motivo" data-label="Motivo" data-order="asc">Motivo </button>
-<button class="sort-button " data-column="reproduccion" data-label="Reproducción" data-order="asc">Reproducción </button>
-<button class="sort-button " data-column="calificacion" data-label="Calificación" data-order="asc">Calificación </button></div><main class="container"><h2 class="category-title">2️⃣ Toro</h2><div id="video-grid-container" class="video-grid">
+<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button active">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><main class="container"><h2 class="category-title">2️⃣ Toro</h2><div id="video-grid-container" class="video-grid">
 <div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=weflWRDd_ig', '_blank')">
   <div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/weflWRDd_ig" title="14 Terneros E 137kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -76,7 +61,7 @@
   <div class="card-content">
     <h3 class="card-title">14 Terneros E 137kg con 30 días</h3>
     <div class="card-description">🆔 <b>b4cd</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b></div>
-    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">Consultar por WhatsApp</a>
+    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">WhatsApp</a>
   </div>
 </div>
 <div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=o56awoE-KJE', '_blank')">
@@ -86,7 +71,7 @@
   <div class="card-content">
     <h3 class="card-title">14 Terneros C 126kg con 30 días</h3>
     <div class="card-description">🆔 <b>68e7</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b></div>
-    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20C%20126kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Do56awoE-KJE" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">Consultar por WhatsApp</a>
+    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20C%20126kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Do56awoE-KJE" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">WhatsApp</a>
   </div>
 </div>
 <div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=weflWRDd_ig', '_blank')">
@@ -96,108 +81,7 @@
   <div class="card-content">
     <h3 class="card-title">14 Terneros E 137kg con 30 días</h3>
     <div class="card-description">🆔 <b>219d</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b></div>
-    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">Consultar por WhatsApp</a>
+    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">WhatsApp</a>
   </div>
-</div></div></main><footer class="footer"><p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha
-</p></footer>
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const lotesData = [{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/weflWRDd_ig","videoUrlFullscreen":"https://www.youtube.com/embed/weflWRDd_ig?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":179,"descriptionHTML":"🆔 <b>b4cd</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":17,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros C 126kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=o56awoE-KJE","embedUrl":"https://www.youtube.com/embed/o56awoE-KJE","videoUrlFullscreen":"https://www.youtube.com/embed/o56awoE-KJE?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20C%20126kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Do56awoE-KJE","grupo":"2️⃣ Toro","peso":191,"descriptionHTML":"🆔 <b>68e7</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"3","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/weflWRDd_ig","videoUrlFullscreen":"https://www.youtube.com/embed/weflWRDd_ig?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":163,"descriptionHTML":"🆔 <b>219d</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""}];
-          const tbody = document.getElementById('lotes-tbody');
-          const gridContainer = document.getElementById('video-grid-container');
-          const sortButtons = document.querySelectorAll('.sort-button');
-          const numericColumns = ['cantidad', 'peso'];
-
-          const pesos = lotesData.map(l => l.peso).filter(v => v > 0);
-          const cantidades = lotesData.map(l => l.cantidad).filter(v => v > 0);
-          const minPeso = Math.min(...pesos);
-          const maxPeso = Math.max(...pesos);
-          const minCantidad = Math.min(...cantidades);
-          const maxCantidad = Math.max(...cantidades);
-
-          function getColorForValue(value, min, max) {
-              if (min === max) return 'hsl(0, 0%, 0%)';
-              const p = (value - min) / (max - min);
-              const hue = 40 - (p * 40);
-              const lightness = Math.max(0, 50 - (p * p * 50));
-              return `hsl(${hue}, 100%, ${lightness}%)`;
-          }
-
-          function renderTable(lotes) {
-            tbody.innerHTML = lotes.map(lote => {
-              const colorPeso = getColorForValue(lote.peso, minPeso, maxPeso);
-              const colorCantidad = getColorForValue(lote.cantidad, minCantidad, maxCantidad);
-              // Celdas con 'Corral' al principio
-              return `
-                <tr onclick="window.open('${lote.videoUrlFullscreen}', '_blank')" style="cursor: pointer;">
-                  <td data-label="Corral"><b>${lote.corral || ''}</b></td>
-                  <td data-label="Grupo"><b>${lote.grupo || ''}</b></td>
-                  <td data-label="Categoría"><b>${lote.categoria || ''}</b></td>
-                  <td data-label="Cantidad"><b style="color: ${colorCantidad};">${lote.cantidad || ''}</b></td>
-                  <td data-label="Peso"><b style="color: ${colorPeso};">${lote.peso || ''}</b></td>
-                  <td data-label="Plazo">${lote.plazo || ''}</td>
-                  <td data-label="Sanidad">${lote.sanidad || ''}</td>
-                  <td data-label="China">${lote.china || ''}</td>
-                  <td data-label="Motivo">${lote.motivo || ''}</td>
-                  <td data-label="Reproducción">${lote.reproduccion || ''}</td>
-                  <td data-label="Calificación">${lote.calificacion || ''}</td>
-                </tr>`;
-            }).join('');
-          }
-
-          function renderGrid(lotes) {
-            gridContainer.innerHTML = lotes.map(lote => `
-              <div class="card card-as-link" onclick="window.open('${lote.videoUrl || '#'}', '_blank')">
-                <div class="video-wrapper">
-                  <iframe src="${lote.embedUrl}" title="${lote.titulo}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="card-content">
-                  <h3 class="card-title">${lote.titulo}</h3>
-                  <div class="card-description">${lote.descriptionHTML}</div>
-                  <a href="https://api.whatsapp.com/send?text=${lote.whatsappText}" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">WhatsApp</a>
-                </div>
-              </div>`).join('');
-          }
-
-          function sortAndRender(column, order) {
-            let sortedLotes = [...lotesData];
-            sortedLotes.sort((a, b) => {
-              const valA = a[column];
-              const valB = b[column];
-              if (numericColumns.includes(column)) {
-                return order === 'asc' ? (parseFloat(valA) || 0) - (parseFloat(valB) || 0) : (parseFloat(valB) || 0) - (parseFloat(valA) || 0);
-              } else {
-                const strA = String(valA || '').toLowerCase();
-                const strB = String(valB || '').toLowerCase();
-                if (strA < strB) return order === 'asc' ? -1 : 1;
-                if (strA > strB) return order === 'asc' ? 1 : -1;
-                return 0;
-              }
-            });
-            if (tbody) renderTable(sortedLotes);
-            if (gridContainer) renderGrid(sortedLotes);
-          }
-
-          sortButtons.forEach(button => {
-            button.addEventListener('click', function() {
-              const wasActive = this.classList.contains('active');
-              const column = this.dataset.column;
-              let currentOrder = this.dataset.order;
-              let newOrder = wasActive ? (currentOrder === 'asc' ? 'desc' : 'asc') : (numericColumns.includes(column) ? 'desc' : 'asc');
-              
-              sortButtons.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.label !== btn.innerHTML) {
-                    btn.innerHTML = btn.dataset.label;
-                }
-              });
-
-              this.classList.add('active');
-              this.dataset.order = newOrder;
-              this.innerHTML = `${this.dataset.label} ${newOrder === 'asc' ? '🔼' : '🔽'}`;
-              sortAndRender(column, newOrder);
-            });
-          });
-        });
-      </script></body>
+</div></div></main><footer class="footer"><p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p></footer></body>
 </html>
