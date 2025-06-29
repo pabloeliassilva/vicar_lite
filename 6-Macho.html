@@ -18,10 +18,10 @@
     .event-tag { font-size: 1.1em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: var(--primary-color); }
     
-    /* Navegación y Botones de Ordenamiento */
-    .nav-container, .sort-controls { text-align: center; padding: 15px 10px; }
-    .nav-container { background-color: #f8f8f8; border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
-    .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    /* ¡CSS ACTUALIZADO! Navegación y Botones de Ordenamiento */
+    .nav-container, .sort-controls { text-align: center; padding: 15px 10px; background-color: #f8f8f8; }
+    .nav-container { border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
+    .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; border-bottom: 1px solid #ddd; }
     .nav-button, .sort-button { text-decoration: none; border: none; color: white; padding: 10px 18px; margin: 0; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
     .nav-button { background-color: var(--primary-color); }
     .nav-button:hover { background-color: #004a7c; transform: translateY(-2px); }
@@ -31,7 +31,7 @@
     .sort-button.active { background-color: var(--primary-color); font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
 
     /* Contenido de Categoría y Tarjetas */
-    .category-title { font-size: 1.8em; text-align: center; color: var(--dark-text); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 30px; margin-bottom: 30px; }
+    .category-title { font-size: 1.8em; text-align: center; color: var(--dark-text); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 10px; margin-bottom: 30px; }
     .video-grid, .maps-grid-container { display: grid; gap: 25px; grid-template-columns: 1fr; }
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
     .card-as-link { cursor: pointer; }
@@ -43,8 +43,8 @@
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
 
     /* Estilos de Tabla Responsiva */
-    .table-container { width: 100%; overflow-x: auto; }
-    .lotes-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white; }
+    .table-container { width: 100%; overflow-x: auto; margin-top: 10px; }
+    .lotes-table { border-collapse: collapse; width: 100%; margin: 0; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white; }
     .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; }
     .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
     .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; }
@@ -76,14 +76,14 @@
     }
   </style>
 </head>
-<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button active">6️⃣ Macho</a></nav><main class="container"><h2 class="category-title">6️⃣ Macho</h2><div class="sort-controls"><button class="sort-button active" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
+<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button active">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button active" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
 <button class="sort-button " data-column="peso" data-label="Peso" data-order="desc">Peso 🔽</button>
 <button class="sort-button " data-column="plazo" data-label="Plazo" data-order="asc">Plazo 🔼</button>
 <button class="sort-button " data-column="sanidad" data-label="Sanidad" data-order="asc">Sanidad 🔼</button>
 <button class="sort-button " data-column="china" data-label="China" data-order="asc">China 🔼</button>
 <button class="sort-button " data-column="motivo" data-label="Motivo" data-order="asc">Motivo 🔼</button>
 <button class="sort-button " data-column="reproduccion" data-label="Reproducción" data-order="asc">Reproducción 🔼</button>
-<button class="sort-button " data-column="calificacion" data-label="Calificación" data-order="asc">Calificación 🔼</button></div><div id="video-grid-container" class="video-grid">
+<button class="sort-button " data-column="calificacion" data-label="Calificación" data-order="asc">Calificación 🔼</button></div><main class="container"><h2 class="category-title">6️⃣ Macho</h2><div id="video-grid-container" class="video-grid">
 <div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=w21Kol4KnmM', '_blank')">
   <div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -97,8 +97,8 @@
       <script>
         document.addEventListener('DOMContentLoaded', function() {
           const lotesData = [{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","embedUrl":"https://www.youtube.com/embed/w21Kol4KnmM","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM","grupo":"6️⃣ Macho","peso":190,"descriptionHTML":"🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":3,"categoria":"🟢 Novillito","cantidad":10,"plazo":"120","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"CyE","calificacion":"⭐⭐","notas":""}];
-          const tbody = document.getElementById('lotes-tbody'); // Para la vista de Lista
-          const gridContainer = document.getElementById('video-grid-container'); // Para la vista de Categoría
+          const tbody = document.getElementById('lotes-tbody');
+          const gridContainer = document.getElementById('video-grid-container');
           const sortButtons = document.querySelectorAll('.sort-button');
           const numericColumns = ['cantidad', 'peso'];
 
@@ -168,15 +168,11 @@
                 newOrder = numericColumns.includes(column) ? 'desc' : 'asc';
               }
               
-              sortButtons.forEach(btn => {
-                btn.classList.remove('active');
-              });
+              sortButtons.forEach(btn => btn.classList.remove('active'));
 
               this.classList.add('active');
               this.dataset.order = newOrder;
               const icon = newOrder === 'asc' ? '🔼' : '🔽';
-              
-              // ¡CORRECCIÓN! Leer la etiqueta desde el atributo data-label para evitar errores.
               const label = this.dataset.label;
               this.innerHTML = `${label} ${icon}`;
               
