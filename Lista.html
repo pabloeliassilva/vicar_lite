@@ -18,24 +18,30 @@
     .event-tag-container { text-align: center; padding: 0 15px; margin: 20px auto 0; max-width: 800px; }
     .event-tag { font-size: 1.2em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: #0056b3; }
-   
+    
     /* Navegación */
     .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; }
     .nav-button { display: inline-block; padding: 10px 20px; margin: 5px; background-color: #0063a3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
     .nav-button:hover { background-color: #004a7c; }
     .nav-button.active { background-color: #e67e22; }
-   
+    
+    /* --- ¡NUEVO! Estilos para botones de ordenamiento --- */
+    .sort-controls { text-align: center; margin-bottom: 20px; }
+    .sort-button { background-color: #6c757d; color: white; border: none; padding: 10px 15px; margin: 0 5px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; font-size: 0.9em; }
+    .sort-button:hover { background-color: #5a6268; }
+    .sort-button.active { background-color: #0063a3; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+
     /* Contenido de Categoría */
     .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
-   
+    
     /* Grilla de Videos Responsiva */
     .video-grid { display: grid; gap: 25px; grid-template-columns: 1fr; }
     @media (min-width: 700px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
-       
+        
     /* Tarjetas (para videos y mapas) */
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
-    .card-as-link { cursor: pointer; } /* MODIFICADO: Añade cursor para tarjetas clicables */
+    .card-as-link { cursor: pointer; }
     .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background-color: #000; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     .card-content { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
@@ -48,26 +54,26 @@
     /* Grilla para los mapas */
     .maps-grid-container { display: grid; gap: 20px; grid-template-columns: 1fr; }
     @media (min-width: 769px) { .maps-grid-container { grid-template-columns: repeat(2, 1fr); } }
-   
-    /* Estilos para la tabla de Lotes */
+    
+    /* --- ¡ACTUALIZADO! Estilos para la tabla de Lotes centrada --- */
     .table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .lotes-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.9em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; }
+    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; } /* MODIFICADO */
     .lotes-table th { background-color: #0063a3; color: white; font-weight: bold; }
     .lotes-table tbody tr { background-color: #ffffff; transition: background-color 0.2s; }
     .lotes-table tbody tr:nth-child(even) { background-color: #eaf4ff; }
     .lotes-table tbody tr:hover { background-color: #dcecfc; }
-   
+    
     /* Pie de página */
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
-   
+    
     /* Media Queries para Responsividad General */
     @media (max-width: 768px) {
       .map-container { width: 95%; }
       .event-title { font-size: 1.6em; }
       .event-tag { font-size: 1.0em; }
-      .nav-button { padding: 8px 15px; font-size: 0.9em; }
+      .nav-button, .sort-button { padding: 8px 15px; font-size: 0.9em; }
       .lotes-table { font-size: 0.8em; }
       .lotes-table th, .lotes-table td { padding: 8px 10px; }
     }
@@ -89,6 +95,14 @@
     
       <main class="container">
         
+      <div class="sort-controls">
+        <button class="sort-button active" data-sort="cantidad-desc">Cantidad +</button>
+        <button class="sort-button" data-sort="cantidad-asc">Cantidad -</button>
+        <button class="sort-button" data-sort="peso-desc">Peso +</button>
+        <button class="sort-button" data-sort="peso-asc">Peso -</button>
+      </div>
+    
+        
     <div class="table-container">
       <table class="lotes-table">
         <thead>
@@ -96,20 +110,8 @@
             <th>Categoría</th><th>Cantidad</th><th>Peso</th><th>Plazo</th><th>Sanidad</th><th>China</th><th>Motivo</th><th>Reproducción</th><th>Calificación</th><th>Notas</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="lotes-tbody">
           
-    <tr>
-      <td><b>🟢 Novillito</b></td>
-      <td><b>10</b></td>
-      <td><b>190</b></td>
-      <td>120</td>
-      <td>Sin</td>
-      <td>No</td>
-      <td>Faena</td>
-      <td>CyE</td>
-      <td>⭐⭐</td>
-      <td></td>
-    </tr>
     <tr>
       <td><b>🟢 Novillito</b></td>
       <td><b>26</b></td>
@@ -119,6 +121,42 @@
       <td>No</td>
       <td>Faena</td>
       <td>E</td>
+      <td>⭐⭐</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><b>⚫ Toro</b></td>
+      <td><b>17</b></td>
+      <td><b>192</b></td>
+      <td>90</td>
+      <td>Sin</td>
+      <td>No</td>
+      <td>Reproducción</td>
+      <td>E</td>
+      <td>⭐</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><b>⚫ Toro</b></td>
+      <td><b>17</b></td>
+      <td><b>179</b></td>
+      <td>90</td>
+      <td>Sin</td>
+      <td>No</td>
+      <td>Reproducción</td>
+      <td>E</td>
+      <td>⭐</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><b>🟢 Novillito</b></td>
+      <td><b>10</b></td>
+      <td><b>190</b></td>
+      <td>120</td>
+      <td>Sin</td>
+      <td>No</td>
+      <td>Faena</td>
+      <td>CyE</td>
       <td>⭐⭐</td>
       <td></td>
     </tr>
@@ -146,30 +184,6 @@
       <td>⭐</td>
       <td></td>
     </tr>
-    <tr>
-      <td><b>⚫ Toro</b></td>
-      <td><b>17</b></td>
-      <td><b>190</b></td>
-      <td>90</td>
-      <td>Sin</td>
-      <td>No</td>
-      <td>Reproducción</td>
-      <td>E</td>
-      <td>⭐</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><b>⚫ Toro</b></td>
-      <td><b>17</b></td>
-      <td><b>179</b></td>
-      <td>90</td>
-      <td>Sin</td>
-      <td>No</td>
-      <td>Reproducción</td>
-      <td>E</td>
-      <td>⭐</td>
-      <td></td>
-    </tr>
         </tbody>
       </table>
     </div>
@@ -179,5 +193,58 @@
     <footer class="footer">
       <p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p>
     </footer>
+  
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const lotesData = [{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","grupo":"1️⃣ Gordo","peso":214,"descriptionHTML":"🆔 <b>4837</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":"1","categoria":"🟢 Novillito","cantidad":26,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"E","calificacion":"⭐⭐","notas":""},{"idEvento":"18950555","titulo":"","videoUrl":"","grupo":"2️⃣ Toro","peso":192,"descriptionHTML":"🆔 <b>3d47</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"3","categoria":"⚫ Toro","cantidad":17,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","grupo":"2️⃣ Toro","peso":179,"descriptionHTML":"🆔 <b>b4cd</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":17,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","grupo":"6️⃣ Macho","peso":190,"descriptionHTML":"🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":3,"categoria":"🟢 Novillito","cantidad":10,"plazo":"120","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"CyE","calificacion":"⭐⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros C 126kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=o56awoE-KJE","grupo":"2️⃣ Toro","peso":164,"descriptionHTML":"🆔 <b>68e7</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"3","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","grupo":"2️⃣ Toro","peso":163,"descriptionHTML":"🆔 <b>219d</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""}];
+          const tbody = document.getElementById('lotes-tbody');
+          const sortButtons = document.querySelectorAll('.sort-button');
+
+          function renderTable(lotes) {
+            tbody.innerHTML = lotes.map(lote => `
+              <tr>
+                <td><b>${lote.categoria || ''}</b></td>
+                <td><b>${lote.cantidad || ''}</b></td>
+                <td><b>${lote.peso || ''}</b></td>
+                <td>${lote.plazo || ''}</td>
+                <td>${lote.sanidad || ''}</td>
+                <td>${lote.china || ''}</td>
+                <td>${lote.motivo || ''}</td>
+                <td>${lote.reproduccion || ''}</td>
+                <td>${lote.calificacion || ''}</td>
+                <td>${lote.notas || ''}</td>
+              </tr>
+            `).join('');
+          }
+
+          sortButtons.forEach(button => {
+            button.addEventListener('click', function() {
+              // Manejar clase activa
+              sortButtons.forEach(btn => btn.classList.remove('active'));
+              this.classList.add('active');
+              
+              const sortKey = this.dataset.sort;
+              let sortedLotes = [...lotesData]; // Crear copia para no mutar el original
+
+              switch (sortKey) {
+                case 'cantidad-desc':
+                  sortedLotes.sort((a, b) => (b.cantidad || 0) - (a.cantidad || 0));
+                  break;
+                case 'cantidad-asc':
+                  sortedLotes.sort((a, b) => (a.cantidad || 0) - (b.cantidad || 0));
+                  break;
+                case 'peso-desc':
+                  sortedLotes.sort((a, b) => (b.peso || 0) - (a.peso || 0));
+                  break;
+                case 'peso-asc':
+                  sortedLotes.sort((a, b) => (a.peso || 0) - (b.peso || 0));
+                  break;
+              }
+              renderTable(sortedLotes);
+            });
+          });
+        });
+      </script>
+    
 </body>
 </html>
