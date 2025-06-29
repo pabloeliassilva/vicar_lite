@@ -2,114 +2,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vicar Ganadera - 6️⃣ Macho</title>
-  <style>
-    /* Estilos Generales */
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; display: flex; flex-direction: column; min-height: 100vh; }
-    .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
-    .map-container { max-width: 1000px; width: 90%; margin: 20px auto; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vicar Ganadera - 6️⃣ Macho</title>
+  <style>
+    /* Estilos Generales */
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; display: flex; flex-direction: column; min-height: 100vh; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
+    .map-container { max-width: 1000px; width: 90%; margin: 20px auto; }
 
 
-    /* Encabezado */
-    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
-    .header .main-banner { max-width: 250px; height: auto; margin-bottom: 25px; }
-    .event-title { font-size: 1.9em; color: #333333; margin: 15px 0; font-weight: bold; }
-    .event-tag-container { text-align: center; padding: 0 15px; margin: 20px auto 0; max-width: 800px; }
-    .event-tag { font-size: 1.2em; color: #444; margin: 0; line-height: 1.6; }
-    .event-tag b { color: #0056b3; }
-   
-    /* Navegación */
-    .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; }
-    .nav-button { display: inline-block; padding: 10px 20px; margin: 5px; background-color: #0063a3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
-    .nav-button:hover { background-color: #004a7c; }
-    .nav-button.active { background-color: #e67e22; }
-   
-    /* Contenido de Categoría */
-    .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
-   
-    /* Grilla de Videos Responsiva */
-    .video-grid { display: grid; gap: 25px; grid-template-columns: 1fr; }
-    @media (min-width: 700px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
-       
-    /* Tarjetas (para videos y mapas) */
-    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
-    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background-color: #000; }
-    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .card-content { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
-    .card-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: #333; }
-    .card-separator { border: 0; height: 1px; background-color: #eee; margin: 15px 0; }
-    .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; margin-bottom: 10px; }
-    .card-description b { color: #333; }
-    .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
+    /* Encabezado */
+    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
+    .header .main-banner { max-width: 250px; height: auto; margin-bottom: 25px; }
+    .event-title { font-size: 1.9em; color: #333333; margin: 15px 0; font-weight: bold; }
+    .event-tag-container { text-align: center; padding: 0 15px; margin: 20px auto 0; max-width: 800px; }
+    .event-tag { font-size: 1.2em; color: #444; margin: 0; line-height: 1.6; }
+    .event-tag b { color: #0056b3; }
+   
+    /* Navegación */
+    .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; }
+    .nav-button { display: inline-block; padding: 10px 20px; margin: 5px; background-color: #0063a3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
+    .nav-button:hover { background-color: #004a7c; }
+    .nav-button.active { background-color: #e67e22; }
+   
+    /* Contenido de Categoría */
+    .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
+   
+    /* Grilla de Videos Responsiva */
+    .video-grid { display: grid; gap: 25px; grid-template-columns: 1fr; }
+    @media (min-width: 700px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
+       
+    /* Tarjetas (para videos y mapas) */
+    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background-color: #000; }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .card-content { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+    .card-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: #333; }
+    .card-separator { border: 0; height: 1px; background-color: #eee; margin: 15px 0; }
+    .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; margin-bottom: 10px; }
+    .card-description b { color: #333; }
+    .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
 
 
-    /* Grilla para los mapas */
-    .maps-grid-container { display: grid; gap: 20px; grid-template-columns: 1fr; }
-    @media (min-width: 769px) { .maps-grid-container { grid-template-columns: repeat(2, 1fr); } }
-   
-    /* --- ¡NUEVO! Estilos para la tabla de Lotes --- */
-    .table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .lotes-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.9em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; }
-    .lotes-table th { background-color: #0063a3; color: white; font-weight: bold; }
-    .lotes-table tbody tr { background-color: #ffffff; }
-    .lotes-table tbody tr:nth-child(even) { background-color: #eaf4ff; } /* Azul temático muy clarito */
-    .lotes-table tbody tr:hover { background-color: #dcecfc; }
-   
-    /* Pie de página */
-    .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
-    .footer p { margin: 0; font-size: 0.9em; }
-   
-    /* Media Queries para Responsividad General */
-    @media (max-width: 768px) {
-      .map-container { width: 95%; }
-      .event-title { font-size: 1.6em; }
-      .event-tag { font-size: 1.0em; }
-      .nav-button { padding: 8px 15px; font-size: 0.9em; }
-      .lotes-table { font-size: 0.8em; }
-      .lotes-table th, .lotes-table td { padding: 8px 10px; }
-    }
-  </style>
+    /* Grilla para los mapas */
+    .maps-grid-container { display: grid; gap: 20px; grid-template-columns: 1fr; }
+    @media (min-width: 769px) { .maps-grid-container { grid-template-columns: repeat(2, 1fr); } }
+   
+    /* --- ¡NUEVO! Estilos para la tabla de Lotes --- */
+    .table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .lotes-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.9em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; vertical-align: middle; }
+    .lotes-table th { background-color: #0063a3; color: white; font-weight: bold; }
+    .lotes-table tbody tr { background-color: #ffffff; }
+    .lotes-table tbody tr:nth-child(even) { background-color: #eaf4ff; } /* Azul temático muy clarito */
+    .lotes-table tbody tr:hover { background-color: #dcecfc; }
+    .lotes-table b { color: #111; }
+   
+    /* Pie de página */
+    .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
+    .footer p { margin: 0; font-size: 0.9em; }
+   
+    /* Media Queries para Responsividad General */
+    @media (max-width: 768px) {
+      .map-container { width: 95%; }
+      .event-title { font-size: 1.6em; }
+      .event-tag { font-size: 1.0em; }
+      .nav-button { padding: 8px 15px; font-size: 0.9em; }
+      .lotes-table { font-size: 0.8em; }
+      .lotes-table th, .lotes-table td { padding: 8px 10px; }
+    }
+  </style>
 </head>
 <body>
-  
-    
-    <header class="header">
-      <img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner">
-      <h1 class="event-title">Remate Hacienda General etc</h1>
-      <div class="event-tag-container">
-        <p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p>
-      </div>
-    </header>
-    <nav class="nav-container">
-      <a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button active">6️⃣ Macho</a>
-    </nav>
-    
-      <main class="container">
-        <h2 class="category-title">6️⃣ Macho</h2>
-        <div class="video-grid">
-          
+  
+    
+    <header class="header">
+      <img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner">
+      <h1 class="event-title">Remate Hacienda General etc</h1>
+      <div class="event-tag-container">
+        <p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p>
+      </div>
+    </header>
+    <nav class="nav-container">
+      <a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button active">6️⃣ Macho</a>
+    </nav>
+    
+      <main class="container">
+        <h2 class="category-title">6️⃣ Macho</h2>
+        <div class="video-grid">
+          
 <div class="card">
-  <div class="video-wrapper">
-    <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
-  <div class="card-content">
-    <div>
-      <h3 class="card-title">13 Terneros C 122kg con 30 días</h3>
-      <hr class="card-separator">
-      <div class="card-description">🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b></div>
-    </div>
-    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank">WhatsApp</a>
-  </div>
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="card-content">
+    <div>
+      <h3 class="card-title">13 Terneros C 122kg con 30 días</h3>
+      <hr class="card-separator">
+      <div class="card-description">🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b></div>
+    </div>
+    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank">WhatsApp</a>
+  </div>
 </div>
-        </div>
-      </main>
-    
-    <footer class="footer">
-      <p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p>
-    </footer>
+        </div>
+      </main>
+    
+    <footer class="footer">
+      <p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p>
+    </footer>
 </body>
 </html>
