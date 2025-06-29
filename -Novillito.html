@@ -1,131 +1,208 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vicar Ganadera - 🟢 Novillito</title>
-  <style>
-    /* Estilos Generales */
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; display: flex; flex-direction: column; min-height: 100vh; }
-    .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
-    .map-container { max-width: 1000px; width: 90%; margin: 20px auto; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vicar Ganadera - 🟢 Novillito</title>
+  <style>
+    /* Estilos Generales */
+    :root { --primary-color: #0063a3; --secondary-color: #e67e22; --light-gray: #f4f4f9; --dark-text: #333; --border-color: #ddd; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-gray); display: flex; flex-direction: column; min-height: 100vh; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; width: 95%; }
+    
+    /* Encabezado */
+    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid var(--border-color); background-color: white; }
+    .header .main-banner { max-width: 220px; height: auto; margin-bottom: 20px; }
+    .event-title { font-size: 1.8em; color: var(--dark-text); margin: 15px 0; font-weight: bold; }
+    .event-tag-container { max-width: 800px; margin: 0 auto; }
+    .event-tag { font-size: 1.1em; color: #444; margin: 0; line-height: 1.6; }
+    .event-tag b { color: var(--primary-color); }
+    
+    /* ¡CSS REGENERADO! Navegación y Controles de Ordenamiento */
+    .nav-container, .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; padding: 12px 10px; background-color: #f8f8f8; }
+    .nav-container { border-bottom: 1px solid var(--border-color); }
+    .sort-controls { border-bottom: 1px solid var(--border-color); padding-top: 8px; padding-bottom: 12px;}
+    .sort-label { font-size: 0.9em; color: #555; font-weight: bold; margin-right: 5px; }
+    .nav-button, .sort-button { text-decoration: none; border: 1px solid transparent; color: white; padding: 10px 18px; margin: 0; border-radius: 5px; font-weight: bold; cursor: pointer; transition: all 0.2s ease-in-out; font-size: 0.95em; line-height: 1; }
+    .nav-button:hover, .sort-button:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .nav-button { background-color: var(--primary-color); }
+    .nav-button.active { background-color: var(--secondary-color); font-weight: bold; }
+    .sort-button { background-color: #6c757d; }
+    .sort-button.active { background-color: var(--primary-color); border-color: #004a7c; font-weight: bold; }
 
-    /* Encabezado */
-    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
-    .header .main-banner { max-width: 250px; height: auto; margin-bottom: 25px; }
-    .event-title { font-size: 1.9em; color: #333333; margin: 15px 0; font-weight: bold; }
-    .event-tag-container { text-align: center; padding: 0 15px; margin: 20px auto 0; max-width: 800px; }
-    .event-tag { font-size: 1.2em; color: #444; margin: 0; line-height: 1.6; }
-    .event-tag b { color: #0056b3; }
-    
-    /* Navegación */
-    .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; }
-    .nav-button { display: inline-block; padding: 10px 20px; margin: 5px; background-color: #0063a3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
-    .nav-button:hover { background-color: #004a7c; }
-    .nav-button.active { background-color: #e67e22; }
-    
-    /* Títulos de Contenido */
-    .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
-    .group-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #e67e22; padding-bottom: 10px; margin-top: 40px; margin-bottom: 15px; }
-    /* --- ¡NUEVO! Estilo para el enlace en el título del grupo --- */
-    .group-title a.group-title-link { color: inherit; text-decoration: none; transition: color 0.2s; }
-    .group-title a.group-title-link:hover { color: #c46a0a; text-decoration: underline; }
+    /* Contenido de Categoría y Tarjetas */
+    .category-title { font-size: 1.8em; text-align: center; color: var(--dark-text); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 10px; margin-bottom: 30px; }
+    .video-grid, .maps-grid-container { display: grid; gap: 25px; grid-template-columns: 1fr; }
+    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+    .card-as-link { cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .card-as-link:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.15); }
+    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background-color: #000; }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .card-content { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
+    .card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; color: var(--dark-text); }
+    .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; flex-grow: 1; }
+    .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
 
-    /* Grilla de Videos Responsiva */
-    .video-grid { display: grid; gap: 25px; grid-template-columns: 1fr; }
-    @media (min-width: 700px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
-        
-    /* Tarjetas (para videos y mapas) */
-    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
-    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background-color: #000; }
-    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .card-content { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
-    .card-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: #333; }
-    .card-separator { border: 0; height: 1px; background-color: #eee; margin: 15px 0; }
-    .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; margin-bottom: 10px; }
-    .card-description b { color: #333; }
-    .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
+    /* ¡CSS REGENERADO! Estilos de Tabla Responsiva con Grupo */
+    .table-container { width: 100%; overflow-x: auto; margin-top: 10px; }
+    .lotes-table { border-collapse: collapse; width: 100%; margin: 0; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white; }
+    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid var(--border-color); text-align: center; }
+    .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
+    .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; }
+    .lotes-table tr.group-header { background-color: #343a40; color: white; font-weight: bold; text-align: left; }
+    .lotes-table tr.group-header td { text-align: center; font-size: 1.1em; padding: 14px; }
+    
+    /* Pie de página */
+    .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid var(--border-color); margin-top: auto; }
+    .footer p { margin: 0; font-size: 0.9em; }
+    
+    /* Media Queries */
+    @media (min-width: 769px) {
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
+      .maps-grid-container { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1050px) {
+      .video-grid { grid-template-columns: repeat(3, 1fr); }
+    }
 
-    /* Grilla para los mapas */
-    .maps-grid-container { display: grid; gap: 20px; grid-template-columns: 1fr; }
-    @media (min-width: 769px) { .maps-grid-container { grid-template-columns: repeat(2, 1fr); } }
-    
-    /* Estilos para la tabla de Lotes */
-    .table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .lotes-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.9em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; vertical-align: middle; }
-    .lotes-table th { background-color: #0063a3; color: white; font-weight: bold; }
-    .lotes-table tbody tr { background-color: #ffffff; }
-    .lotes-table tbody tr:nth-child(even) { background-color: #eaf4ff; }
-    .lotes-table tbody tr:hover { background-color: #dcecfc; }
-    
-    /* Pie de página */
-    .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
-    .footer p { margin: 0; font-size: 0.9em; }
-    
-    /* Media Queries para Responsividad General */
-    @media (max-width: 768px) {
-      .map-container { width: 95%; }
-      .event-title { font-size: 1.6em; }
-      .event-tag { font-size: 1.0em; }
-      .nav-button { padding: 8px 15px; font-size: 0.9em; }
-      .group-title, .category-title { font-size: 1.5em; }
-      .lotes-table { font-size: 0.8em; }
-      .lotes-table th, .lotes-table td { padding: 8px 10px; }
-    }
-  </style>
+    @media screen and (max-width: 768px) {
+      .event-title { font-size: 1.5em; }
+      .event-tag, .nav-button, .sort-button, .footer p { font-size: 0.9em; }
+      .nav-button, .sort-button { padding: 8px 12px; }
+      .lotes-table { box-shadow: none; }
+      .lotes-table thead { display: none; }
+      .lotes-table, .lotes-table tbody, .lotes-table tr, .lotes-table td { display: block; width: 100%; box-sizing: border-box;}
+      .lotes-table tr { margin-bottom: 15px; border: 1px solid var(--border-color); border-radius: 5px; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+      .lotes-table tr.group-header { margin-bottom: 10px; border-radius: 5px; }
+      .lotes-table tr.group-header td { padding: 12px; }
+      .lotes-table td { text-align: right; padding-left: 50%; position: relative; border: none; border-bottom: 1px solid #eee; }
+      .lotes-table td:last-child { border-bottom: none; }
+      .lotes-table td::before { content: attr(data-label); position: absolute; left: 15px; width: calc(50% - 20px); text-align: left; font-weight: bold; color: var(--dark-text); }
+      .lotes-table tr.group-header td::before { content: ''; }
+    }
+  </style>
 </head>
-<body>
-  
-    
-    <header class="header">
-      <img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner">
-      <h1 class="event-title">Remate Hacienda General etc</h1>
-      <div class="event-tag-container">
-        <p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p>
-      </div>
-    </header>
-    <nav class="nav-container">
-      <a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="-Toro.html" class="nav-button ">⚫ Toro</a><a href="-Novillito.html" class="nav-button active">🟢 Novillito</a>
-    </nav>
-    
-      <main class="container">
-        <h2 class="category-title">🟢 Novillito</h2>
-        <div class="video-grid">
-          
-<div class="card">
-  <div class="video-wrapper">
-    <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
-  <div class="card-content">
-    <div>
-      <h3 class="card-title">13 Terneros C 122kg con 30 días</h3>
-      <hr class="card-separator">
-      <div class="card-description">🆔 <b>4837</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b></div>
-    </div>
-    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank">WhatsApp</a>
-  </div>
+<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista Completa</a><a href="-Toro.html" class="nav-button ">⚫ Toro</a><a href="-Novillito.html" class="nav-button active">🟢 Novillito</a></nav><div class="sort-controls"><span class="sort-label">Ordenar por:</span><button class="sort-button" data-column="categoria" data-label="Categoría" data-order="asc">Categoría 🔼</button>
+<button class="sort-button" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
+<button class="sort-button" data-column="peso" data-label="Peso" data-order="desc">Peso 🔽</button>
+<button class="sort-button" data-column="plazo" data-label="Plazo" data-order="asc">Plazo 🔼</button></div><main class="container"><h2 class="category-title">🟢 Novillito</h2><div id="video-grid-container" class="video-grid">
+<div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=w21Kol4KnmM', '_blank')">
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="card-content">
+    <h3 class="card-title">13 Terneros C 122kg con 30 días</h3>
+    <div class="card-description">🆔 <b>4837</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b></div>
+    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">Consultar por WhatsApp</a>
+  </div>
 </div>
-<div class="card">
-  <div class="video-wrapper">
-    <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
-  <div class="card-content">
-    <div>
-      <h3 class="card-title">13 Terneros C 122kg con 30 días</h3>
-      <hr class="card-separator">
-      <div class="card-description">🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b></div>
-    </div>
-    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank">WhatsApp</a>
-  </div>
-</div>
-        </div>
-      </main>
-    
-    <footer class="footer">
-      <p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p>
-    </footer>
-</body>
+<div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=w21Kol4KnmM', '_blank')">
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="card-content">
+    <h3 class="card-title">13 Terneros C 122kg con 30 días</h3>
+    <div class="card-description">🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b></div>
+    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">Consultar por WhatsApp</a>
+  </div>
+</div></div></main><footer class="footer"><p>Vicar Ganadera S.A. - Consignatarios desde 1964</p></footer>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const lotesData = [{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","embedUrl":"https://www.youtube.com/embed/w21Kol4KnmM","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM","grupo":"1️⃣ Gordo","peso":214,"descriptionHTML":"🆔 <b>4837</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":"1","categoria":"🟢 Novillito","cantidad":26,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"E","calificacion":"⭐⭐","notas":""},{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","embedUrl":"https://www.youtube.com/embed/w21Kol4KnmM","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM","grupo":"6️⃣ Macho","peso":190,"descriptionHTML":"🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":3,"categoria":"🟢 Novillito","cantidad":10,"plazo":"120","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"CyE","calificacion":"⭐⭐","notas":""}];
+          const tbody = document.getElementById('lotes-tbody');
+          const gridContainer = document.getElementById('video-grid-container');
+          const sortButtons = document.querySelectorAll('.sort-button');
+          const numericColumns = ['cantidad', 'peso'];
+
+          // Función para renderizar la tabla (se usará después de ordenar)
+          function renderTable(lotes) {
+            if (!tbody) return;
+            // Al re-renderizar por JS, se pierde la agrupación visual en favor del orden.
+            tbody.innerHTML = lotes.map(lote => `
+              <tr>
+                <td data-label="Categoría"><b>${lote.categoria || ''}</b></td>
+                <td data-label="Cantidad"><b>${lote.cantidad || ''}</b></td>
+                <td data-label="Peso"><b>${lote.peso || ''}</b></td>
+                <td data-label="Plazo">${lote.plazo || ''}</td>
+                <td data-label="Sanidad">${lote.sanidad || ''}</td>
+                <td data-label="China">${lote.china || ''}</td>
+                <td data-label="Motivo">${lote.motivo || ''}</td>
+                <td data-label="Reproducción">${lote.reproduccion || ''}</td>
+                <td data-label="Calificación">${lote.calificacion || ''}</td>
+                <td data-label="Notas">${lote.notas || ''}</td>
+              </tr>`).join('');
+          }
+
+          // Función para renderizar la cuadrícula de videos
+          function renderGrid(lotes) {
+            if (!gridContainer) return;
+            gridContainer.innerHTML = lotes.map(lote => `
+              <div class="card card-as-link" onclick="window.open('${lote.videoUrl || '#'}', '_blank')">
+                <div class="video-wrapper">
+                  <iframe src="${lote.embedUrl}" title="${lote.titulo}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                  <h3 class="card-title">${lote.titulo}</h3>
+                  <div class="card-description">${lote.descriptionHTML}</div>
+                  <a href="https://api.whatsapp.com/send?text=${lote.whatsappText}" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">Consultar por WhatsApp</a>
+                </div>
+              </div>`).join('');
+          }
+
+          function sortAndRender(column, order) {
+            let sortedLotes = [...lotesData];
+            sortedLotes.sort((a, b) => {
+              const valA = a[column];
+              const valB = b[column];
+
+              if (numericColumns.includes(column)) {
+                const numA = parseFloat(valA) || 0;
+                const numB = parseFloat(valB) || 0;
+                return order === 'asc' ? numA - numB : numB - numA;
+              } else {
+                const strA = String(valA || '').toLowerCase();
+                const strB = String(valB || '').toLowerCase();
+                if (strA < strB) return order === 'asc' ? -1 : 1;
+                if (strA > strB) return order === 'asc' ? 1 : -1;
+                return 0;
+              }
+            });
+
+            if (tbody) renderTable(sortedLotes);
+            if (gridContainer) renderGrid(sortedLotes);
+          }
+
+          sortButtons.forEach(button => {
+            button.addEventListener('click', function() {
+              const wasActive = this.classList.contains('active');
+              const column = this.dataset.column;
+              let currentOrder = this.dataset.order;
+              
+              let newOrder;
+              if (wasActive) {
+                newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+              } else {
+                newOrder = numericColumns.includes(column) ? 'desc' : 'asc';
+              }
+              
+              sortButtons.forEach(btn => {
+                  btn.classList.remove('active');
+                  // Reset icon for inactive buttons
+                  const initialOrder = numericColumns.includes(btn.dataset.column) ? 'desc' : 'asc';
+                  const initialIcon = initialOrder === 'asc' ? '🔼' : '🔽';
+                  btn.innerHTML = `${btn.dataset.label} ${initialIcon}`;
+
+              });
+
+              this.classList.add('active');
+              this.dataset.order = newOrder;
+              const icon = newOrder === 'asc' ? '🔼' : '🔽';
+              const label = this.dataset.label;
+              this.innerHTML = `${label} ${icon}`;
+              
+              sortAndRender(column, newOrder);
+            });
+          });
+        });
+      </script></body>
 </html>
