@@ -14,10 +14,16 @@
     .event-tag-container { max-width: 800px; margin: 0 auto; }
     .event-tag { font-size: 1.1em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: var(--primary-color); }
-    .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
-    .nav-button { text-decoration: none; border: none; color: white; padding: 10px 18px; margin: 0; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s, transform 0.2s; background-color: var(--primary-color); }
+    .nav-container, .sort-controls { text-align: center; padding: 15px 10px; background-color: #f8f8f8; }
+    .nav-container { border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
+    .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; border-bottom: 1px solid #ddd; }
+    .nav-button, .sort-button { text-decoration: none; border: none; color: white; padding: 10px 18px; margin: 0; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
+    .nav-button { background-color: var(--primary-color); }
     .nav-button:hover { background-color: #004a7c; transform: translateY(-2px); }
     .nav-button.active { background-color: var(--secondary-color); }
+    .sort-button { background-color: #6c757d; font-size: 0.9em; }
+    .sort-button:hover { background-color: #5a6268; }
+    .sort-button.active { background-color: var(--primary-color); font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
     .category-title { font-size: 1.8em; text-align: center; color: var(--dark-text); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 10px; margin-bottom: 30px; }
     .video-grid, .maps-grid-container { display: grid; gap: 25px; grid-template-columns: 1fr; }
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
@@ -31,8 +37,10 @@
     .table-container { width: 100%; overflow-x: auto; margin-top: 10px; }
     .lotes-table { border-collapse: collapse; width: 100%; margin: 0; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white; }
     .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; }
-    .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; position: relative; } /* ¡MODIFICADO! Añadido position relative */
-    .lotes-table th.active { background-color: var(--secondary-color); } /* ¡NUEVO! Estilo para el header activo */
+    .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
+    .lotes-table th.sortable-header { cursor: pointer; } /* ¡NUEVO! Cursor para indicar que se puede hacer clic */
+    .lotes-table th.sortable-header:hover { background-color: #004a7c; } /* ¡NUEVO! Efecto hover */
+    .lotes-table th.sortable-header.active { background-color: var(--secondary-color); } /* ¡NUEVO! Estilo para el encabezado activo */
     .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; }
     .lotes-table tbody tr:hover { background-color: #e9ecef; }
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
@@ -41,8 +49,8 @@
     @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
     @media screen and (max-width: 768px) {
       .event-title { font-size: 1.5em; }
-      .event-tag, .nav-button, .footer p { font-size: 0.9em; }
-      .nav-button { padding: 8px 12px; }
+      .event-tag, .nav-button, .sort-button, .footer p { font-size: 0.9em; }
+      .nav-button, .sort-button { padding: 8px 12px; }
       .lotes-table { box-shadow: none; }
       .lotes-table thead { display: none; }
       .lotes-table, .lotes-table tbody, .lotes-table tr, .lotes-table td { display: block; width: 100%; box-sizing: border-box;}
