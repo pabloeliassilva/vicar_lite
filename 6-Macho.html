@@ -1,51 +1,104 @@
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Vicar Ganadera - 6️⃣ Macho</title>
   <style>
-    :root { --primary-color: #0063a3; --secondary-color: #e67e22; --light-gray: #f4f4f9; --dark-text: #333; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-gray); display: flex; flex-direction: column; min-height: 100vh; }
+    /* ¡NUEVO! Variables CSS para Theming */
+    :root {
+      /* Modo Claro (Default) */
+      --bg-color: #f4f4f9;
+      --card-bg-color: #ffffff;
+      --text-color: #333;
+      --text-color-light: #555;
+      --header-bg-color: #ffffff;
+      --footer-bg-color: #ffffff;
+      --nav-bg-color: #f8f8f8;
+      --primary-color: #0063a3;
+      --primary-color-hover: #004a7c;
+      --secondary-color: #e67e22;
+      --border-color: #ddd;
+      --table-row-even-bg: #f8f8f8;
+      --table-row-hover-bg: #e9ecef;
+      --button-secondary-bg: #6c757d;
+      --button-secondary-hover: #5a6268;
+      --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    html.dark-mode {
+      /* Modo Oscuro */
+      --bg-color: #1a202c;
+      --card-bg-color: #2d3748;
+      --text-color: #E2E8F0;
+      --text-color-light: #A0AEC0;
+      --header-bg-color: #2d3748;
+      --footer-bg-color: #2d3748;
+      --nav-bg-color: #283141;
+      --primary-color: #4299E1;
+      --primary-color-hover: #2b6cb0;
+      --secondary-color: #F6AD55;
+      --border-color: #4A5568;
+      --table-row-even-bg: #2c3a4f;
+      --table-row-hover-bg: #3a4b64;
+      --button-secondary-bg: #4A5568;
+      --button-secondary-hover: #2D3748;
+      --card-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    /* Estilos Generales */
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+      margin: 0; padding: 0; 
+      background-color: var(--bg-color); color: var(--text-color);
+      display: flex; flex-direction: column; min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
     .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; width: 95%; }
-    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
+    /* Header */
+    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid var(--border-color); background-color: var(--header-bg-color); transition: background-color 0.3s, border-color 0.3s; }
     .header .main-banner { max-width: 220px; height: auto; margin-bottom: 20px; }
-    .event-title { font-size: 1.8em; color: var(--dark-text); margin: 15px 0; font-weight: bold; }
-    .event-tag-container { max-width: 800px; margin: 0 auto; } .event-tag { font-size: 1.1em; color: #444; margin: 0; line-height: 1.6; } .event-tag b { color: var(--primary-color); }
-    .nav-container, .sort-controls { text-align: center; padding: 15px 10px; background-color: #f8f8f8; }
-    .nav-container { border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
-    .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; border-bottom: 1px solid #ddd; }
+    .event-title { font-size: 1.8em; color: var(--text-color); margin: 15px 0; font-weight: bold; }
+    .event-tag-container { max-width: 800px; margin: 0 auto; } .event-tag { font-size: 1.1em; color: var(--text-color-light); margin: 0; line-height: 1.6; } .event-tag b { color: var(--primary-color); }
+    /* Navegación y Controles */
+    .nav-container, .sort-controls { text-align: center; padding: 15px 10px; background-color: var(--nav-bg-color); border-bottom: 1px solid var(--border-color); transition: background-color 0.3s, border-color 0.3s;}
+    .nav-container { flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
+    .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
     .nav-button, .sort-button { text-decoration: none; border: none; color: white; padding: 10px 18px; margin: 0; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
-    .nav-button { background-color: var(--primary-color); } .nav-button:hover { background-color: #004a7c; transform: translateY(-2px); } .nav-button.active { background-color: var(--secondary-color); }
-    .sort-button { background-color: #6c757d; font-size: 0.9em; } .sort-button:hover { background-color: #5a6268; } .sort-button.active { background-color: var(--primary-color); font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-    .category-title { font-size: 1.8em; text-align: center; color: var(--dark-text); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 10px; margin-bottom: 30px; }
+    .nav-button { background-color: var(--primary-color); } .nav-button:hover { background-color: var(--primary-color-hover); transform: translateY(-2px); } .nav-button.active { background-color: var(--secondary-color); }
+    .sort-button { background-color: var(--button-secondary-bg); font-size: 0.9em; } .sort-button:hover { background-color: var(--button-secondary-hover); } .sort-button.active { background-color: var(--primary-color); font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    /* Contenido Principal */
+    .category-title { font-size: 1.8em; text-align: center; color: var(--text-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 10px; margin-bottom: 30px; }
     .video-grid, .maps-grid-container { display: grid; gap: 25px; grid-template-columns: 1fr; }
-    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+    .card { background: var(--card-bg-color); border-radius: 8px; box-shadow: var(--card-shadow); overflow: hidden; display: flex; flex-direction: column; transition: background-color 0.3s, box-shadow 0.3s; }
     .card.chart-card img { width: 100%; height: auto; }
     .card-as-link { cursor: pointer; }
     .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background-color: #000; } .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .card-content { padding: 15px; text-align: center; flex-grow: 1; } .card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; color: var(--dark-text); } .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; }
+    .card-content { padding: 15px; text-align: center; flex-grow: 1; } .card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; color: var(--text-color); } .card-description { font-size: 0.95em; color: var(--text-color-light); text-align: left; line-height: 1.5; }
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
+    /* Tabla */
     .table-container { width: 100%; overflow-x: auto; margin-top: 10px; }
-    .lotes-table { border-collapse: collapse; width: 100%; margin: 0; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white; }
-    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; }
+    .lotes-table { border-collapse: collapse; width: 100%; margin: 0; font-size: 1em; box-shadow: var(--card-shadow); background-color: var(--card-bg-color); }
+    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid var(--border-color); text-align: center; }
     .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
-    .lotes-table th.sortable-header { cursor: pointer; } .lotes-table th.sortable-header:hover { background-color: #004a7c; } .lotes-table th.sortable-header.active { background-color: var(--secondary-color); }
-    .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; } .lotes-table tbody tr:hover { background-color: #e9ecef; }
-    .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; } .footer p { margin: 0; font-size: 0.9em; }
-
-    /* --- ¡NUEVO! Estilos para la sección de gráficos --- */
+    .lotes-table th.sortable-header { cursor: pointer; } .lotes-table th.sortable-header:hover { background-color: var(--primary-color-hover); } .lotes-table th.sortable-header.active { background-color: var(--secondary-color); }
+    .lotes-table tbody tr { transition: background-color 0.2s; } .lotes-table tbody tr:nth-child(even) { background-color: var(--table-row-even-bg); } .lotes-table tbody tr:hover { background-color: var(--table-row-hover-bg); }
+    /* Gráficos */
     .charts-section { display: flex; flex-direction: column; gap: 25px; margin-top: 25px; }
     .chart-row-double { display: grid; grid-template-columns: 1fr; gap: 25px; }
     .chart-row-single { display: block; }
-
+    .chart-card { padding: 15px; }
+    /* Footer y Switch de Tema */
+    .theme-switcher-container { text-align: center; padding: 30px 0 10px 0; }
+    .theme-toggle-button { background-color: var(--button-secondary-bg); color: white; border: none; padding: 12px 25px; font-size: 1rem; font-weight: bold; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
+    .theme-toggle-button:hover { transform: translateY(-2px); background-color: var(--button-secondary-hover); }
+    .footer { background-color: var(--footer-bg-color); color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid var(--border-color); margin-top: auto; transition: background-color 0.3s, border-color 0.3s; } .footer p { margin: 0; font-size: 0.9em; }
+    /* Media Queries */
     @media (min-width: 769px) { 
       .video-grid, .maps-grid-container { grid-template-columns: repeat(2, 1fr); }
-      .chart-row-double { grid-template-columns: repeat(2, 1fr); } /* Dos gráficos en pantallas anchas */
+      .chart-row-double { grid-template-columns: repeat(2, 1fr); }
     }
     @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
     @media screen and (max-width: 768px) {
       .event-title { font-size: 1.5em; } .event-tag, .nav-button, .sort-button, .footer p { font-size: 0.9em; } .nav-button, .sort-button { padding: 8px 12px; }
       .lotes-table { box-shadow: none; } .lotes-table thead { display: none; }
       .lotes-table, .lotes-table tbody, .lotes-table tr, .lotes-table td { display: block; width: 100%; box-sizing: border-box;}
-      .lotes-table tr { margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-      .lotes-table td { text-align: right; padding-left: 50%; position: relative; border: none; border-bottom: 1px solid #eee; } .lotes-table td:last-child { border-bottom: none; }
-      .lotes-table td::before { content: attr(data-label); position: absolute; left: 15px; width: calc(50% - 20px); text-align: left; font-weight: bold; color: var(--dark-text); }
+      .lotes-table tr { margin-bottom: 15px; border: 1px solid var(--border-color); border-radius: 5px; background-color: var(--card-bg-color); box-shadow: var(--card-shadow); }
+      .lotes-table td { text-align: right; padding-left: 50%; position: relative; border: none; border-bottom: 1px solid var(--border-color); } .lotes-table td:last-child { border-bottom: none; }
+      .lotes-table td::before { content: attr(data-label); position: absolute; left: 15px; width: calc(50% - 20px); text-align: left; font-weight: bold; color: var(--text-color); }
     }
   </style></head><body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button active">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button " data-column="corral" data-label="Corral" data-order="asc">Corral </button>
 <button class="sort-button " data-column="grupo" data-label="Grupo" data-order="asc">Grupo </button>
@@ -57,7 +110,9 @@
 <button class="sort-button " data-column="china" data-label="China" data-order="asc">China </button>
 <button class="sort-button " data-column="motivo" data-label="Motivo" data-order="asc">Motivo </button>
 <button class="sort-button " data-column="reproduccion" data-label="Reproducción" data-order="asc">Reproducción </button>
-<button class="sort-button " data-column="calificacion" data-label="Calificación" data-order="asc">Calificación </button></div><main class="container"><h2 class="category-title">6️⃣ Macho</h2><div id="video-grid-container" class="video-grid"><div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=w21Kol4KnmM', '_blank')"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="card-content"><h3 class="card-title">13 Terneros C 122kg con 30 días</h3><div class="card-description">🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b></div><a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">WhatsApp</a></div></div></div></main><footer class="footer"><p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p></footer><script>
+<button class="sort-button " data-column="calificacion" data-label="Calificación" data-order="asc">Calificación </button></div><main class="container"><h2 class="category-title">6️⃣ Macho</h2><div id="video-grid-container" class="video-grid"><div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=w21Kol4KnmM', '_blank')"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="card-content"><h3 class="card-title">13 Terneros C 122kg con 30 días</h3><div class="card-description">🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b></div><a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">WhatsApp</a></div></div></div></main><div class="theme-switcher-container">
+      <button id="theme-toggle" class="theme-toggle-button">¿Cambiar a Modo Oscuro?</button>
+    </div><footer class="footer"><p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p></footer><script>
         document.addEventListener('DOMContentLoaded', function() {
           const lotesData = [{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","embedUrl":"https://www.youtube.com/embed/w21Kol4KnmM","videoUrlFullscreen":"https://www.youtube.com/embed/w21Kol4KnmM?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM","grupo":"6️⃣ Macho","peso":190,"descriptionHTML":"🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":3,"categoria":"🟢 Novillito","cantidad":10,"plazo":"120","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"CyE","calificacion":"⭐⭐","notas":""}];
           const tbody = document.getElementById('lotes-tbody');
@@ -65,12 +120,61 @@
           const numericColumns = ['cantidad', 'peso'];
           const pesos = lotesData.map(l => l.peso).filter(v => v > 0), cantidades = lotesData.map(l => l.cantidad).filter(v => v > 0);
           const minPeso = Math.min(...pesos), maxPeso = Math.max(...pesos), minCantidad = Math.min(...cantidades), maxCantidad = Math.max(...cantidades);
-          function getColorForValue(v, min, max) { if (min === max) return 'hsl(0,0%,0%)'; const p = (v - min) / (max - min); return `hsl(${40-(p*40)},100%,${Math.max(0,50-(p*p*50))}%)`; }
-          function renderTable(lotes) { if (!tbody) return; tbody.innerHTML = lotes.map(l => `<tr onclick="window.open('${l.videoUrlFullscreen}','_blank')" style="cursor:pointer;"><td data-label="Corral"><b>${l.corral||''}</b></td><td data-label="Grupo"><b>${l.grupo||''}</b></td><td data-label="Categoría"><b>${l.categoria||''}</b></td><td data-label="Cantidad"><b style="color:${getColorForValue(l.cantidad,minCantidad,maxCantidad)};">${l.cantidad||''}</b></td><td data-label="Peso"><b style="color:${getColorForValue(l.peso,minPeso,maxPeso)};">${l.peso||''}</b></td><td data-label="Plazo">${l.plazo||''}</td><td data-label="Sanidad">${l.sanidad||''}</td><td data-label="China">${l.china||''}</td><td data-label="Motivo">${l.motivo||''}</td><td data-label="Reproducción">${l.reproduccion||''}</td><td data-label="Calificación">${l.calificacion||''}</td></tr>`).join(''); }
+          function getColorForValue(v, min, max) { if (min === max) return 'hsl(120, 100%, 45%)'; const p = (v - min) / (max - min); return `hsl(${120 - (p*120)}, 100%, 45%)`; }
+          function renderTable(lotes) { if (!tbody) return; tbody.innerHTML = lotes.map(l => `<tr onclick="window.open('${l.videoUrlFullscreen}','_blank')" style="cursor:pointer;"><td data-label="Corral"><b>${l.corral||''}</b></td><td data-label="Grupo"><b>${l.grupo||''}</b></td><td data-label="Categoría"><b>${l.categoria||''}</b></td><td data-label="Cantidad"><b style="color:${getColorForValue(l.cantidad,minCantidad,maxCantidad)}; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">${l.cantidad||''}</b></td><td data-label="Peso"><b style="color:${getColorForValue(l.peso,minPeso,maxPeso)}; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">${l.peso||''}</b></td><td data-label="Plazo">${l.plazo||''}</td><td data-label="Sanidad">${l.sanidad||''}</td><td data-label="China">${l.china||''}</td><td data-label="Motivo">${l.motivo||''}</td><td data-label="Reproducción">${l.reproduccion||''}</td><td data-label="Calificación">${l.calificacion||''}</td></tr>`).join(''); }
           function renderGrid(lotes) { if (!gridContainer) return; gridContainer.innerHTML = lotes.map(l => `<div class="card card-as-link" onclick="window.open('${l.videoUrl||'#'}','_blank')"><div class="video-wrapper"><iframe src="${l.embedUrl}" title="${l.titulo}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div><div class="card-content"><h3 class="card-title">${l.titulo}</h3><div class="card-description">${l.descriptionHTML}</div><a href="https://api.whatsapp.com/send?text=${l.whatsappText}" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">WhatsApp</a></div></div>`).join(''); }
           function sortAndRender(col, order) { let sorted = [...lotesData]; sorted.sort((a,b) => { const vA=a[col],vB=b[col]; if (numericColumns.includes(col)) return order==='asc'?(parseFloat(vA)||0)-(parseFloat(vB)||0):(parseFloat(vB)||0)-(parseFloat(vA)||0); else { const sA=String(vA||'').toLowerCase(),sB=String(vB||'').toLowerCase(); if(sA<sB)return order==='asc'?-1:1; if(sA>sB)return order==='asc'?1:-1; return 0; }}); if(tbody)renderTable(sorted); if(gridContainer)renderGrid(sorted); }
           function handleSortClick(e) { const t=e.currentTarget,active=t.classList.contains('active'),col=t.dataset.column; let order=t.dataset.order,newOrder=active?(order==='asc'?'desc':'asc'):(numericColumns.includes(col)?'desc':'asc'); document.querySelectorAll('.sort-button,.sortable-header').forEach(el=>{el.classList.remove('active');if(el.dataset.label&&el.innerHTML!==el.dataset.label){el.innerHTML=el.dataset.label;}}); t.classList.add('active'); t.dataset.order=newOrder; t.innerHTML=`${t.dataset.label} ${newOrder==='asc'?'🔼':'🔽'}`; sortAndRender(col,newOrder); }
           document.querySelectorAll('.sort-button').forEach(b=>b.addEventListener('click',handleSortClick));
           document.querySelectorAll('.sortable-header').forEach(h=>h.addEventListener('click',handleSortClick));
         });
-      </script></body></html>
+      </script><script>
+    (function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const htmlElement = document.documentElement;
+      const lightText = '¿Cambiar a Modo Oscuro?';
+      const darkText = '¿Cambiar a Modo Claro?';
+      const chartImages = document.querySelectorAll('.chart-image');
+
+      function applyTheme(theme) {
+        if (theme === 'dark') {
+          htmlElement.classList.add('dark-mode');
+          themeToggle.textContent = darkText;
+          // Actualizar gráficos para modo oscuro
+          chartImages.forEach(img => {
+            if (img.src.includes('quickchart.io')) {
+              let newSrc = img.src.replace(/backgroundColor=transparent/g, 'backgroundColor=%232d3748');
+              newSrc = newSrc.replace(/fontColor:..333/g, 'fontColor:%23E2E8F0');
+              newSrc = newSrc.replace(/fontColor:..444/g, 'fontColor:%23E2E8F0');
+              newSrc = newSrc.replace(/fontColor:..555/g, 'fontColor:%23A0AEC0');
+              img.src = newSrc;
+            }
+          });
+        } else {
+          htmlElement.classList.remove('dark-mode');
+          themeToggle.textContent = lightText;
+           // Revertir gráficos a modo claro
+          chartImages.forEach(img => {
+            if (img.src.includes('quickchart.io')) {
+              let newSrc = img.src.replace(/backgroundColor=%232d3748/g, 'backgroundColor=transparent');
+              newSrc = newSrc.replace(/fontColor:%23E2E8F0/g, 'fontColor:%23333');
+              newSrc = newSrc.replace(/fontColor:%23A0AEC0/g, 'fontColor:%23555');
+              img.src = newSrc;
+            }
+          });
+        }
+      }
+
+      // Al cargar, aplicar tema guardado
+      const savedTheme = localStorage.getItem('vicar-theme') || 'light';
+      applyTheme(savedTheme);
+
+      // Evento del botón
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.classList.contains('dark-mode') ? 'dark' : 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('vicar-theme', newTheme);
+        applyTheme(newTheme);
+      });
+    })();
+  </script></body></html>
