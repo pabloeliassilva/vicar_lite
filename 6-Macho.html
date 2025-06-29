@@ -44,37 +44,31 @@
     .card-description b { color: #333; }
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
 
-    /* Grilla para los mapas */
+    /* --- CAMBIO: Grilla para los mapas --- */
     .maps-grid-container {
-        display: grid;
+      display: grid;
+      gap: 20px;
+      /* Por defecto, los mapas se apilan uno sobre otro en pantallas pequeñas */
+      grid-template-columns: 1fr;
+    }
+    
+    /* En pantallas más grandes (ancho > 768px), se muestran en dos columnas */
+    @media (min-width: 769px) {
+      .maps-grid-container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    .main-map-card {
-        grid-column: 1 / -1;
-    }
-    .secondary-map-card {
-      /* Ocupa una celda de la grilla por defecto */
+      }
     }
     
     /* Pie de página */
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
     
-    /* Media Queries para Responsividad */
+    /* Media Queries para Responsividad General */
     @media (max-width: 768px) {
       .map-container { width: 95%; }
       .event-title { font-size: 1.6em; }
       .event-tag { font-size: 1.0em; }
       .nav-button { padding: 8px 15px; font-size: 0.9em; }
-      
-      /* En pantallas pequeñas, una columna para todos los mapas */
-      .maps-grid-container {
-          grid-template-columns: 1fr;
-      }
-      .main-map-card {
-          grid-column: auto;
-      }
     }
   </style>
 </head>
