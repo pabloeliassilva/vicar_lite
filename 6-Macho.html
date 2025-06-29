@@ -76,14 +76,14 @@
     }
   </style>
 </head>
-<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button active">6️⃣ Macho</a></nav><main class="container"><h2 class="category-title">6️⃣ Macho</h2><div class="sort-controls"><button class="sort-button active" data-column="cantidad" data-order="desc">Cantidad 🔽</button>
-<button class="sort-button " data-column="peso" data-order="desc">Peso 🔽</button>
-<button class="sort-button " data-column="plazo" data-order="asc">Plazo 🔼</button>
-<button class="sort-button " data-column="sanidad" data-order="asc">Sanidad 🔼</button>
-<button class="sort-button " data-column="china" data-order="asc">China 🔼</button>
-<button class="sort-button " data-column="motivo" data-order="asc">Motivo 🔼</button>
-<button class="sort-button " data-column="reproduccion" data-order="asc">Reproducción 🔼</button>
-<button class="sort-button " data-column="calificacion" data-order="asc">Calificación 🔼</button></div><div id="video-grid-container" class="video-grid">
+<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button active">6️⃣ Macho</a></nav><main class="container"><h2 class="category-title">6️⃣ Macho</h2><div class="sort-controls"><button class="sort-button active" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
+<button class="sort-button " data-column="peso" data-label="Peso" data-order="desc">Peso 🔽</button>
+<button class="sort-button " data-column="plazo" data-label="Plazo" data-order="asc">Plazo 🔼</button>
+<button class="sort-button " data-column="sanidad" data-label="Sanidad" data-order="asc">Sanidad 🔼</button>
+<button class="sort-button " data-column="china" data-label="China" data-order="asc">China 🔼</button>
+<button class="sort-button " data-column="motivo" data-label="Motivo" data-order="asc">Motivo 🔼</button>
+<button class="sort-button " data-column="reproduccion" data-label="Reproducción" data-order="asc">Reproducción 🔼</button>
+<button class="sort-button " data-column="calificacion" data-label="Calificación" data-order="asc">Calificación 🔼</button></div><div id="video-grid-container" class="video-grid">
 <div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=w21Kol4KnmM', '_blank')">
   <div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -161,30 +161,25 @@
               const column = this.dataset.column;
               let currentOrder = this.dataset.order;
               
-              // Determinar el nuevo orden
               let newOrder;
               if (wasActive) {
-                // Si ya estaba activo, invertir el orden
                 newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
               } else {
-                // Si no estaba activo, usar el orden por defecto
                 newOrder = numericColumns.includes(column) ? 'desc' : 'asc';
               }
               
-              // Actualizar UI de todos los botones
               sortButtons.forEach(btn => {
                 btn.classList.remove('active');
-                // Opcional: resetear texto de botones inactivos si se desea
               });
 
-              // Activar y actualizar el botón clickeado
               this.classList.add('active');
               this.dataset.order = newOrder;
               const icon = newOrder === 'asc' ? '🔼' : '🔽';
-              const label = this.textContent.replace(/ [🔼🔽]/, '').trim();
+              
+              // ¡CORRECCIÓN! Leer la etiqueta desde el atributo data-label para evitar errores.
+              const label = this.dataset.label;
               this.innerHTML = `${label} ${icon}`;
               
-              // Ordenar y volver a renderizar
               sortAndRender(column, newOrder);
             });
           });
