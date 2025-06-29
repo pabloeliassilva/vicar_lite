@@ -14,9 +14,9 @@
     /* Encabezado */
     .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
     .header .main-banner { max-width: 250px; height: auto; margin-bottom: 25px; }
-    .event-title { font-size: 1.9em; color: #333333; margin: 15px 0; font-weight: bold; } /* ---- AJUSTADO ---- */
+    .event-title { font-size: 1.9em; color: #333333; margin: 15px 0; font-weight: bold; }
     .event-tag-container { text-align: center; padding: 0 15px; margin: 20px auto 0; max-width: 800px; }
-    .event-tag { font-size: 1.2em; color: #444; margin: 0; line-height: 1.6; } /* ---- AJUSTADO ---- */
+    .event-tag { font-size: 1.2em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: #0056b3; }
     
     /* Navegación */
@@ -28,50 +28,53 @@
     /* Contenido de Categoría */
     .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
     
-/* ---- SOLUCIÓN ALTERNATIVA CON MEDIA QUERIES ---- */
-/* Grilla de Videos Responsiva explícita */
-.video-grid {
-    display: grid;
-    gap: 25px;
-    /* Por defecto (móviles): 1 columna que ocupa todo el espacio */
-    grid-template-columns: 1fr;
-}
-
-/* A partir de 700px de ancho de pantalla, cambiamos a 2 columnas */
-@media (min-width: 700px) {
-    .video-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* A partir de 1050px de ancho de pantalla, cambiamos a 3 columnas */
-@media (min-width: 1050px) {
-    .video-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-    
-    /* Tarjetas (para videos y mapa) */
+    /* Grilla de Videos Responsiva */
+    .video-grid { display: grid; gap: 25px; grid-template-columns: 1fr; }
+    @media (min-width: 700px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
+        
+    /* Tarjetas (para videos y mapas) */
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
-    .video-wrapper { position: relative; padding-bottom: 56.25%; /* Ratio 16:9 */ height: 0; background-color: #000; }
+    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background-color: #000; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .card-content { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-content { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
     .card-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: #333; }
     .card-separator { border: 0; height: 1px; background-color: #eee; margin: 15px 0; }
     .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; margin-bottom: 10px; }
     .card-description b { color: #333; }
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
+
+    /**** MODIFICADO: Se añade la grilla para los mapas ****/
+    .maps-grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
+        gap: 20px; /* Espacio entre las tarjetas */
+    }
+    .main-map-card {
+        grid-column: 1 / -1; /* El mapa principal ocupa las dos columnas */
+    }
+    .secondary-map-card {
+        /* Por defecto, cada mapa secundario ocupa una celda de la grilla */
+    }
     
     /* Pie de página */
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
     
-    /* Media Queries para Responsividad (Ajustes adicionales) */
+    /* Media Queries para Responsividad */
     @media (max-width: 768px) {
       .map-container { width: 95%; }
-      .event-title { font-size: 1.6em; } /* ---- AJUSTADO ---- */
-      .event-tag { font-size: 1.0em; }   /* ---- AJUSTADO ---- */
+      .event-title { font-size: 1.6em; }
+      .event-tag { font-size: 1.0em; }
       .nav-button { padding: 8px 15px; font-size: 0.9em; }
+      
+      /**** MODIFICADO: Se ajusta la grilla de mapas para móviles ****/
+      .maps-grid-container {
+          grid-template-columns: 1fr; /* En pantallas pequeñas, una columna para todos los mapas */
+      }
+      .main-map-card {
+          grid-column: auto; /* Se resetea el span de la columna */
+      }
     }
   </style>
 </head>
