@@ -19,25 +19,54 @@
     .nav-button:hover { background-color: #004a7c; }
     .nav-button.active { background-color: #e67e22; }
     
-    /* MODIFICADO: Aumentado el ancho del contenedor principal para que los videos se vean más anchos */
-    .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
-    
-    /* NUEVO: Contenedor para el mapa en la página de inicio, ocupando el 80% del ancho de la ventana */
+    .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
     .map-container { width: 80%; margin: 20px auto; }
     
-    .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; }
-    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 30px; overflow: hidden; }
+    .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
+    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
     
-    /* MODIFICADO: Se restaura el aspect ratio a 16:9 (standard para video) para evitar que se vea "cortado" o estirado verticalmente */
     .video-wrapper { position: relative; padding-bottom: 56.25%; /* 16:9 Ratio */ height: 0; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     
-    .card-content { padding: 15px; text-align: center; }
-    .card .category-title { border-bottom: none; margin-top: 0; }
-    .card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; color: #333; }
-    .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; }
+    .card-content { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: #333; }
+    .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; }
+    
+    /* **** NUEVO: Estilos para la grilla de videos y contenido de tarjetas **** */
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas por defecto */
+        gap: 25px; /* Espacio entre tarjetas */
+    }
+
+    .card-separator {
+        border: 0;
+        height: 1px;
+        background-color: #eee;
+        margin: 15px 0;
+    }
+
+    .card-description {
+        font-size: 0.95em;
+        color: #555;
+        text-align: left;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    /* **** NUEVO: Media Query para hacer la grilla responsive **** */
+    @media (max-width: 768px) {
+        .video-grid {
+            grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        }
+        .map-container {
+            width: 95%; /* El mapa ocupa más ancho en móviles */
+        }
+        .event-title { font-size: 1.8em; }
+        .event-tag { font-size: 1.2em; }
+    }
     /* **** FIN DE MODIFICACIONES CSS **** */
   </style>
 </head>
@@ -49,7 +78,7 @@
       <h1 class="event-title">Remate Hacienda General</h1>
       <hr class="separator">
       <div class="event-tag-container">
-        <p class="event-tag"><b>VICAR GANADERA S.A</b><br>Jueves 26 de Junio de 2025 a las 14:30hs<br>Predio ferial de Vicar Ganadera S.A., <b>VICTORICA</b>, La Pampa<br><br>🐮<br><br></p>
+        <p class="event-tag"><b>VICAR GANADERA S.A</b><br>Jueves 26 de Junio de 2025 a las 14:30hs<br>Predio ferial de Vicar Ganadera S.A., <b>VICTORICA</b>, La Pampa</p>
       </div>
       <hr class="separator">
     </header>
