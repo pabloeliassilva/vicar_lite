@@ -44,17 +44,17 @@
     .card-description b { color: #333; }
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
 
-    /**** MODIFICADO: Se añade la grilla para los mapas ****/
+    /* Grilla para los mapas */
     .maps-grid-container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
-        gap: 20px; /* Espacio entre las tarjetas */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
     .main-map-card {
-        grid-column: 1 / -1; /* El mapa principal ocupa las dos columnas */
+        grid-column: 1 / -1;
     }
     .secondary-map-card {
-        /* Por defecto, cada mapa secundario ocupa una celda de la grilla */
+      /* Ocupa una celda de la grilla por defecto */
     }
     
     /* Pie de página */
@@ -68,12 +68,12 @@
       .event-tag { font-size: 1.0em; }
       .nav-button { padding: 8px 15px; font-size: 0.9em; }
       
-      /**** MODIFICADO: Se ajusta la grilla de mapas para móviles ****/
+      /* En pantallas pequeñas, una columna para todos los mapas */
       .maps-grid-container {
-          grid-template-columns: 1fr; /* En pantallas pequeñas, una columna para todos los mapas */
+          grid-template-columns: 1fr;
       }
       .main-map-card {
-          grid-column: auto; /* Se resetea el span de la columna */
+          grid-column: auto;
       }
     }
   </style>
@@ -100,14 +100,7 @@
       <p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🛰️ VISTA SATELITAL | -36.225166, -65.426998</p>
   </div>
   <div class="video-wrapper">
-    <iframe
-        width="100%"
-        height="100%"
-        style="border:0"
-        loading="lazy"
-        allowfullscreen
-        src="https://maps.google.com/maps?q=-36.225166, -65.426998&t=k&z=17&ie=UTF8&iwloc=&output=embed">
-    </iframe>
+    <iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=-36.225166, -65.426998&t=k&z=17&ie=UTF8&iwloc=&output=embed"></iframe>
   </div>
 </div>
         
@@ -116,30 +109,16 @@
       <p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🗺️ MAPA COMÚN</p>
   </div>
   <div class="video-wrapper">
-    <iframe
-        width="100%"
-        height="100%"
-        style="border:0"
-        loading="lazy"
-        allowfullscreen
-        src="https://maps.google.com/maps?q=-36.225166, -65.426998&z=17&ie=UTF8&iwloc=&output=embed">
-    </iframe>
+    <iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=-36.225166, -65.426998&z=17&ie=UTF8&iwloc=&output=embed"></iframe>
   </div>
 </div>
         
 <div class="card secondary-map-card">
   <div class="card-content">
-      <p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;"> STREET VIEW</p>
+      <p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;"> RELIEVE</p>
   </div>
   <div class="video-wrapper">
-    <iframe
-        width="100%"
-        height="100%"
-        style="border:0"
-        loading="lazy"
-        allowfullscreen
-        src="https://maps.google.com/maps?q=&layer=c&cbll=-36.225166, -65.426998&cbp=11,0,0,0,0&output=svembed">
-    </iframe>
+    <iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=-36.225166, -65.426998&t=p&z=14&ie=UTF8&iwloc=&output=embed"></iframe>
   </div>
 </div>
       </div>
