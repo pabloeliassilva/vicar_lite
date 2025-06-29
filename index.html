@@ -6,56 +6,53 @@
   <title>Vicar Ganadera - Inicio</title>
   <style>
     /* Estilos Generales */
-    :root { --primary-color: #0063a3; --secondary-color: #e67e22; --light-gray: #f4f4f9; --dark-text: #333; --border-color: #ddd; }
+    :root { --primary-color: #0063a3; --secondary-color: #e67e22; --light-gray: #f4f4f9; --dark-text: #333; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-gray); display: flex; flex-direction: column; min-height: 100vh; }
     .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; width: 95%; }
-    
+   
     /* Encabezado */
-    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid var(--border-color); background-color: white; }
+    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
     .header .main-banner { max-width: 220px; height: auto; margin-bottom: 20px; }
     .event-title { font-size: 1.8em; color: var(--dark-text); margin: 15px 0; font-weight: bold; }
     .event-tag-container { max-width: 800px; margin: 0 auto; }
     .event-tag { font-size: 1.1em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: var(--primary-color); }
-    
-    /* ¡CSS REGENERADO! Navegación y Controles de Ordenamiento */
-    .nav-container, .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; padding: 12px 10px; background-color: #f8f8f8; }
-    .nav-container { border-bottom: 1px solid var(--border-color); }
-    .sort-controls { border-bottom: 1px solid var(--border-color); padding-top: 8px; padding-bottom: 12px;}
-    .sort-label { font-size: 0.9em; color: #555; font-weight: bold; margin-right: 5px; }
-    .nav-button, .sort-button { text-decoration: none; border: 1px solid transparent; color: white; padding: 10px 18px; margin: 0; border-radius: 5px; font-weight: bold; cursor: pointer; transition: all 0.2s ease-in-out; font-size: 0.95em; line-height: 1; }
-    .nav-button:hover, .sort-button:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+   
+    /* Navegación y Botones de Ordenamiento */
+    .nav-container, .sort-controls { text-align: center; padding: 15px 10px; background-color: #f8f8f8; }
+    .nav-container { border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
+    .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; border-bottom: 1px solid #ddd; }
+    .nav-button, .sort-button { text-decoration: none; border: none; color: white; padding: 10px 18px; margin: 0; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
     .nav-button { background-color: var(--primary-color); }
-    .nav-button.active { background-color: var(--secondary-color); font-weight: bold; }
-    .sort-button { background-color: #6c757d; }
-    .sort-button.active { background-color: var(--primary-color); border-color: #004a7c; font-weight: bold; }
+    .nav-button:hover { background-color: #004a7c; transform: translateY(-2px); }
+    .nav-button.active { background-color: var(--secondary-color); }
+    .sort-button { background-color: #6c757d; font-size: 0.9em; }
+    .sort-button:hover { background-color: #5a6268; }
+    .sort-button.active { background-color: var(--primary-color); font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
 
     /* Contenido de Categoría y Tarjetas */
     .category-title { font-size: 1.8em; text-align: center; color: var(--dark-text); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 10px; margin-bottom: 30px; }
     .video-grid, .maps-grid-container { display: grid; gap: 25px; grid-template-columns: 1fr; }
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
-    .card-as-link { cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
-    .card-as-link:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.15); }
+    .card-as-link { cursor: pointer; }
     .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background-color: #000; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .card-content { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
+    .card-content { padding: 15px; text-align: center; flex-grow: 1; }
     .card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; color: var(--dark-text); }
-    .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; flex-grow: 1; }
+    .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; }
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
 
-    /* ¡CSS REGENERADO! Estilos de Tabla Responsiva con Grupo */
+    /* Estilos de Tabla Responsiva */
     .table-container { width: 100%; overflow-x: auto; margin-top: 10px; }
     .lotes-table { border-collapse: collapse; width: 100%; margin: 0; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white; }
-    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid var(--border-color); text-align: center; }
+    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; }
     .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
     .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; }
-    .lotes-table tr.group-header { background-color: #343a40; color: white; font-weight: bold; text-align: left; }
-    .lotes-table tr.group-header td { text-align: center; font-size: 1.1em; padding: 14px; }
-    
+   
     /* Pie de página */
-    .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid var(--border-color); margin-top: auto; }
+    .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
-    
+   
     /* Media Queries */
     @media (min-width: 769px) {
       .video-grid { grid-template-columns: repeat(2, 1fr); }
@@ -72,15 +69,12 @@
       .lotes-table { box-shadow: none; }
       .lotes-table thead { display: none; }
       .lotes-table, .lotes-table tbody, .lotes-table tr, .lotes-table td { display: block; width: 100%; box-sizing: border-box;}
-      .lotes-table tr { margin-bottom: 15px; border: 1px solid var(--border-color); border-radius: 5px; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-      .lotes-table tr.group-header { margin-bottom: 10px; border-radius: 5px; }
-      .lotes-table tr.group-header td { padding: 12px; }
+      .lotes-table tr { margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
       .lotes-table td { text-align: right; padding-left: 50%; position: relative; border: none; border-bottom: 1px solid #eee; }
       .lotes-table td:last-child { border-bottom: none; }
       .lotes-table td::before { content: attr(data-label); position: absolute; left: 15px; width: calc(50% - 20px); text-align: left; font-weight: bold; color: var(--dark-text); }
-      .lotes-table tr.group-header td::before { content: ''; }
     }
   </style>
 </head>
-<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button active">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista Completa</a><a href="-Toro.html" class="nav-button ">⚫ Toro</a><a href="-Novillito.html" class="nav-button ">🟢 Novillito</a></nav><main class="container"><div class="maps-grid-container"><div class="card"><div class="card-content" style="padding-bottom: 8px;"><p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🛰️ VISTA SATELITAL</p></div><div class="video-wrapper"><iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=-36.691283, -64.386801&t=k&z=17&ie=UTF8&iwloc=&output=embed"></iframe></div></div><div class="card"><div class="card-content" style="padding-bottom: 8px;"><p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🗺️ VISTA DE MAPA</p></div><div class="video-wrapper"><iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=-36.691283, -64.386801&z=17&ie=UTF8&iwloc=&output=embed"></iframe></div></div></div></main><footer class="footer"><p>Vicar Ganadera S.A. - Consignatarios desde 1964</p></footer></body>
+<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button active">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><main class="container"><div class="maps-grid-container"><div class="card"><div class="card-content" style="padding-bottom: 8px;"><p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🛰️ VISTA SATELITAL</p></div><div class="video-wrapper"><iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=-36.691283, -64.386801&t=k&z=17&ie=UTF8&iwloc=&output=embed"></iframe></div></div><div class="card"><div class="card-content" style="padding-bottom: 8px;"><p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🗺️ VISTA DE MAPA</p></div><div class="video-wrapper"><iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=-36.691283, -64.386801&z=17&ie=UTF8&iwloc=&output=embed"></iframe></div></div></div></main><footer class="footer"><p>Vicar Ganadera S.A. - Consignatarios desde 1964</p></footer></body>
 </html>
