@@ -6,23 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vicar Ganadera - 2️⃣ Toro</title>
   <style>
+    /* **** MODIFICACIÓN: Actualización de estilos CSS **** */
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; display: flex; flex-direction: column; min-height: 100vh; }
-    .header { text-align: center; padding: 20px 10px; background-color: white; border-bottom: 1px solid #ddd; }
+    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd;
+        /* Degradado vertical del nuevo azul a blanco */
+        background: linear-gradient(to bottom, #0063a3, white);
+    }
     .header .main-banner { max-width: 250px; height: auto; margin-bottom: 25px; }
-    .event-title { font-size: 2.2em; color: #004494; margin: 15px 0; font-weight: bold; }
+    /* Título del evento en blanco para contraste con el degradado */
+    .event-title { font-size: 2.2em; color: #FFFFFF; margin: 15px 0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
     .separator { border: 0; height: 1px; background: #ccc; margin: 25px auto; width: 70%; }
     .event-tag-container { text-align: center; padding: 0 15px; margin: 0 auto; max-width: 800px; }
     .event-tag { font-size: 1.5em; color: #444; margin: 0; line-height: 1.6; }
     .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; }
-    .nav-button { display: inline-block; padding: 10px 20px; margin: 5px; background-color: #004494; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
-    .nav-button:hover { background-color: #002d62; }
+    /* Botones con el nuevo color azul */
+    .nav-button { display: inline-block; padding: 10px 20px; margin: 5px; background-color: #0063a3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
+    .nav-button:hover { background-color: #004a7c; }
     .nav-button.active { background-color: #e67e22; }
     .container { max-width: 900px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
-    .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #004494; padding-bottom: 10px; margin-top: 40px; }
+    /* Título de categoría con el nuevo color azul */
+    .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; }
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 30px; overflow: hidden; }
     .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     .card-content { padding: 15px; text-align: center; }
+    /* Se quita el borde inferior del título de categoría cuando está dentro de una tarjeta */
+    .card .category-title { border-bottom: none; margin-top: 0; }
     .card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; color: #333; }
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; }
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
@@ -33,10 +42,10 @@
   
     <header class="header">
       <img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner">
-      <h1 class="event-title">Feria</h1>
+      <h1 class="event-title">Remate Hacienda General</h1>
       <hr class="separator">
       <div class="event-tag-container">
-        <p class="event-tag"><b>VICAR GANADERA S.A</b><br>Remate Hacienda General<br>Jueves 26 de Junio de 2025 a las 14:30hs<br>Predio ferial de Vicar Ganadera S.A., <b>VICTORICA</b>, La Pampa</p>
+        <p class="event-tag"><b>VICAR GANADERA S.A</b><br>Jueves 26 de Junio de 2025 a las 14:30hs<br>Predio ferial de Vicar Ganadera S.A., <b>VICTORICA</b>, La Pampa<br><br>🐮<br><br></p>
       </div>
       <hr class="separator">
     </header>
