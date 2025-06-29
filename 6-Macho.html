@@ -9,7 +9,7 @@
     :root { --primary-color: #0063a3; --secondary-color: #e67e22; --light-gray: #f4f4f9; --dark-text: #333; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-gray); display: flex; flex-direction: column; min-height: 100vh; }
     .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; width: 95%; }
-    
+   
     /* Encabezado */
     .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
     .header .main-banner { max-width: 220px; height: auto; margin-bottom: 20px; }
@@ -17,8 +17,8 @@
     .event-tag-container { max-width: 800px; margin: 0 auto; }
     .event-tag { font-size: 1.1em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: var(--primary-color); }
-    
-    /* ¡CSS ACTUALIZADO! Navegación y Botones de Ordenamiento */
+   
+    /* Navegación y Botones de Ordenamiento */
     .nav-container, .sort-controls { text-align: center; padding: 15px 10px; background-color: #f8f8f8; }
     .nav-container { border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
     .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; border-bottom: 1px solid #ddd; }
@@ -48,11 +48,11 @@
     .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; }
     .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
     .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; }
-    
+   
     /* Pie de página */
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
-    
+   
     /* Media Queries */
     @media (min-width: 769px) {
       .video-grid { grid-template-columns: repeat(2, 1fr); }
@@ -76,14 +76,17 @@
     }
   </style>
 </head>
-<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button active">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button active" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
-<button class="sort-button " data-column="peso" data-label="Peso" data-order="desc">Peso 🔽</button>
-<button class="sort-button " data-column="plazo" data-label="Plazo" data-order="asc">Plazo 🔼</button>
-<button class="sort-button " data-column="sanidad" data-label="Sanidad" data-order="asc">Sanidad 🔼</button>
-<button class="sort-button " data-column="china" data-label="China" data-order="asc">China 🔼</button>
-<button class="sort-button " data-column="motivo" data-label="Motivo" data-order="asc">Motivo 🔼</button>
-<button class="sort-button " data-column="reproduccion" data-label="Reproducción" data-order="asc">Reproducción 🔼</button>
-<button class="sort-button " data-column="calificacion" data-label="Calificación" data-order="asc">Calificación 🔼</button></div><main class="container"><h2 class="category-title">6️⃣ Macho</h2><div id="video-grid-container" class="video-grid">
+<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button active">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button " data-column="grupo" data-label="Grupo" data-order="asc">Grupo </button>
+<button class="sort-button " data-column="categoria" data-label="Categoría" data-order="asc">Categoría </button>
+<button class="sort-button " data-column="corral" data-label="Corral" data-order="asc">Corral </button>
+<button class="sort-button active" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
+<button class="sort-button " data-column="peso" data-label="Peso" data-order="desc">Peso </button>
+<button class="sort-button " data-column="plazo" data-label="Plazo" data-order="asc">Plazo </button>
+<button class="sort-button " data-column="sanidad" data-label="Sanidad" data-order="asc">Sanidad </button>
+<button class="sort-button " data-column="china" data-label="China" data-order="asc">China </button>
+<button class="sort-button " data-column="motivo" data-label="Motivo" data-order="asc">Motivo </button>
+<button class="sort-button " data-column="reproduccion" data-label="Reproducción" data-order="asc">Reproducción </button>
+<button class="sort-button " data-column="calificacion" data-label="Calificación" data-order="asc">Calificación </button></div><main class="container"><h2 class="category-title">6️⃣ Macho</h2><div id="video-grid-container" class="video-grid">
 <div class="card card-as-link" onclick="window.open('https://www.youtube.com/watch?v=w21Kol4KnmM', '_blank')">
   <div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -100,12 +103,15 @@
           const tbody = document.getElementById('lotes-tbody');
           const gridContainer = document.getElementById('video-grid-container');
           const sortButtons = document.querySelectorAll('.sort-button');
+          // 'corral' se trata como texto, no necesita estar en numericColumns.
           const numericColumns = ['cantidad', 'peso'];
 
           function renderTable(lotes) {
             tbody.innerHTML = lotes.map(lote => `
               <tr>
+                <td data-label="Grupo">${lote.grupo || ''}</td>
                 <td data-label="Categoría"><b>${lote.categoria || ''}</b></td>
+                <td data-label="Corral">${lote.corral || ''}</td>
                 <td data-label="Cantidad"><b>${lote.cantidad || ''}</b></td>
                 <td data-label="Peso"><b>${lote.peso || ''}</b></td>
                 <td data-label="Plazo">${lote.plazo || ''}</td>
@@ -160,22 +166,29 @@
               const wasActive = this.classList.contains('active');
               const column = this.dataset.column;
               let currentOrder = this.dataset.order;
-              
+             
               let newOrder;
               if (wasActive) {
                 newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
               } else {
                 newOrder = numericColumns.includes(column) ? 'desc' : 'asc';
               }
-              
-              sortButtons.forEach(btn => btn.classList.remove('active'));
+             
+              sortButtons.forEach(btn => {
+                btn.classList.remove('active');
+                // Quita el icono de los botones inactivos
+                const label = btn.dataset.label;
+                if(btn.innerHTML !== label) {
+                    btn.innerHTML = label;
+                }
+              });
 
               this.classList.add('active');
               this.dataset.order = newOrder;
               const icon = newOrder === 'asc' ? '🔼' : '🔽';
               const label = this.dataset.label;
               this.innerHTML = `${label} ${icon}`;
-              
+             
               sortAndRender(column, newOrder);
             });
           });
