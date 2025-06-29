@@ -39,7 +39,6 @@
     .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; }
     .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
     .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; }
-    /* ¡NUEVO! Estilo para fila clicable */
     .lotes-table tbody tr:hover { background-color: #e9ecef; }
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
@@ -59,9 +58,9 @@
     }
   </style>
 </head>
-<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button active">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button " data-column="grupo" data-label="Grupo" data-order="asc">Grupo </button>
+<body><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button active">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button " data-column="corral" data-label="Corral" data-order="asc">Corral </button>
+<button class="sort-button " data-column="grupo" data-label="Grupo" data-order="asc">Grupo </button>
 <button class="sort-button " data-column="categoria" data-label="Categoría" data-order="asc">Categoría </button>
-<button class="sort-button " data-column="corral" data-label="Corral" data-order="asc">Corral </button>
 <button class="sort-button active" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
 <button class="sort-button " data-column="peso" data-label="Peso" data-order="desc">Peso </button>
 <button class="sort-button " data-column="plazo" data-label="Plazo" data-order="asc">Plazo </button>
@@ -88,7 +87,6 @@
           const sortButtons = document.querySelectorAll('.sort-button');
           const numericColumns = ['cantidad', 'peso'];
 
-          // Pre-calcular min y max para el formato de color
           const pesos = lotesData.map(l => l.peso).filter(v => v > 0);
           const cantidades = lotesData.map(l => l.cantidad).filter(v => v > 0);
           const minPeso = Math.min(...pesos);
@@ -108,11 +106,12 @@
             tbody.innerHTML = lotes.map(lote => {
               const colorPeso = getColorForValue(lote.peso, minPeso, maxPeso);
               const colorCantidad = getColorForValue(lote.cantidad, minCantidad, maxCantidad);
+              // Celdas con 'Corral' al principio
               return `
                 <tr onclick="window.open('${lote.videoUrlFullscreen}', '_blank')" style="cursor: pointer;">
+                  <td data-label="Corral"><b>${lote.corral || ''}</b></td>
                   <td data-label="Grupo"><b>${lote.grupo || ''}</b></td>
                   <td data-label="Categoría"><b>${lote.categoria || ''}</b></td>
-                  <td data-label="Corral"><b>${lote.corral || ''}</b></td>
                   <td data-label="Cantidad"><b style="color: ${colorCantidad};">${lote.cantidad || ''}</b></td>
                   <td data-label="Peso"><b style="color: ${colorPeso};">${lote.peso || ''}</b></td>
                   <td data-label="Plazo">${lote.plazo || ''}</td>
