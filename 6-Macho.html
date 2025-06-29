@@ -14,9 +14,9 @@
     /* Encabezado */
     .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
     .header .main-banner { max-width: 250px; height: auto; margin-bottom: 25px; }
-    .event-title { font-size: 2.2em; color: #333333; margin: 15px 0; font-weight: bold; }
+    .event-title { font-size: 1.9em; color: #333333; margin: 15px 0; font-weight: bold; } /* ---- AJUSTADO ---- */
     .event-tag-container { text-align: center; padding: 0 15px; margin: 20px auto 0; max-width: 800px; }
-    .event-tag { font-size: 1.5em; color: #444; margin: 0; line-height: 1.6; }
+    .event-tag { font-size: 1.2em; color: #444; margin: 0; line-height: 1.6; } /* ---- AJUSTADO ---- */
     .event-tag b { color: #0056b3; }
     
     /* Navegación */
@@ -28,12 +28,13 @@
     /* Contenido de Categoría */
     .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
     
-    /* **** MODIFICADO **** Grilla de Videos Responsiva */
+    /* ---- MODIFICADO / EXPLICADO ---- */
+    /* Grilla de Videos Responsiva: 3, 2 o 1 columna automáticamente */
     .video-grid { 
         display: grid;
-        /* Crea columnas de un tamaño mínimo de 320px y un máximo de 1fr (fracción del espacio disponible).
-           'auto-fit' ajusta el número de columnas automáticamente según el ancho del contenedor.
-           Esto mostrará 3 columnas en ~1050px+, 2 en ~700px+, y 1 en anchos menores. */
+        /* 'auto-fit' ajusta el número de columnas al espacio disponible. */
+        /* 'minmax(320px, 1fr)' define que cada columna tendrá un mínimo de 320px y se expandirá para ocupar el espacio sobrante. */
+        /* Esto resulta en 3 columnas en pantallas anchas (>1050px), 2 en medianas (>700px) y 1 en móviles. */
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 25px; 
     }
@@ -56,8 +57,8 @@
     /* Media Queries para Responsividad (Ajustes adicionales) */
     @media (max-width: 768px) {
       .map-container { width: 95%; }
-      .event-title { font-size: 1.8em; }
-      .event-tag { font-size: 1.2em; }
+      .event-title { font-size: 1.6em; } /* ---- AJUSTADO ---- */
+      .event-tag { font-size: 1.0em; }   /* ---- AJUSTADO ---- */
       .nav-button { padding: 8px 15px; font-size: 0.9em; }
     }
   </style>
@@ -90,7 +91,7 @@
       <hr class="card-separator">
       <div class="card-description">🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b></div>
     </div>
-    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank">Consultar por WhatsApp</a>
+    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank">WhatsApp</a>
   </div>
 </div>
         </div>
