@@ -28,8 +28,15 @@
     /* Contenido de Categoría */
     .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
     
-    /* Grilla de Videos */
-    .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+    /* **** MODIFICADO **** Grilla de Videos Responsiva */
+    .video-grid { 
+        display: grid;
+        /* Crea columnas de un tamaño mínimo de 320px y un máximo de 1fr (fracción del espacio disponible).
+           'auto-fit' ajusta el número de columnas automáticamente según el ancho del contenedor.
+           Esto mostrará 3 columnas en ~1050px+, 2 en ~700px+, y 1 en anchos menores. */
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px; 
+    }
     
     /* Tarjetas (para videos y mapa) */
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
@@ -46,9 +53,8 @@
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
     
-    /* Media Queries para Responsividad */
+    /* Media Queries para Responsividad (Ajustes adicionales) */
     @media (max-width: 768px) {
-      .video-grid { grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */ }
       .map-container { width: 95%; }
       .event-title { font-size: 1.8em; }
       .event-tag { font-size: 1.2em; }
@@ -67,13 +73,13 @@
       </div>
     </header>
       <nav class="nav-container">
-        <a href="index.html" class="nav-button active">Inicio</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a>
+        <a href="index.html" class="nav-button active">Inicio</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a>
       </nav>
       <main class="map-container">
         
 <div class="card">
   <div class="card-content">
-      <p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🌍 Ubicación del Evento</p>
+      <p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🌍 -36.225166, -65.426998</p>
   </div>
   <div class="video-wrapper">
     <iframe
