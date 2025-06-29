@@ -16,26 +16,64 @@
       --button-secondary-bg: #4A5568; --button-secondary-hover: #2D3748; --card-shadow: 0 4px 8px rgba(0,0,0,0.3);
       --qr-button-bg: #A0AEC0; --qr-button-hover: #718096;
     }
-    /* NUEVO: Estilos para el banner de cuenta regresiva */
-    .countdown-banner {
-      background-color: var(--secondary-color);
-      color: white;
-      text-align: center;
-      padding: 8px 10px;
-      font-size: 1em;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      width: 100%;
-      box-sizing: border-box;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-    html.dark-mode .countdown-banner {
-      background-color: var(--secondary-color);
-    }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; transition: background-color 0.3s, color 0.3s; }
     .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; width: 95%; }
-    /* Ajuste en el header para que el banner superior no le quite espacio visual */
-    .header { text-align: center; padding: 15px 10px 20px 10px; border-bottom: 1px solid var(--border-color); background-color: var(--header-bg-color); transition: background-color 0.3s, border-color 0.3s; }
+    
+    /* ================================================================ */
+    /* ===== ¡NUEVO! ESTILOS PARA EL BANNER DE CUENTA REGRESIVA ======= */
+    /* ================================================================ */
+    #event-timer-banner {
+      padding: 8px 15px;
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      transition: background-color 0.4s, color 0.4s;
+      display: none; /* Oculto por defecto, JS lo muestra */
+    }
+    /* Estado de cuenta regresiva normal */
+    #event-timer-banner.countdown-active {
+      background-color: var(--primary-color); /* Azul temático */
+      color: white;
+    }
+    /* Estado de cuenta regresiva urgente (<24hs) */
+    #event-timer-banner.countdown-urgent {
+      background-color: #FF8C00; /* Naranja brillante */
+      color: white;
+      font-weight: bold;
+    }
+    /* Estado de evento en VIVO */
+    #event-timer-banner.event-live {
+      background-color: #39FF14; /* Verde neón */
+      color: #1a202c; /* Texto oscuro para contraste */
+      text-shadow: 0 0 5px white;
+      font-size: 1.4em;
+    }
+    /* Estado de evento finalizado */
+    #event-timer-banner.event-finished {
+      background-color: black;
+      color: white;
+    }
+    /* Sobrescribir estilos para Modo Oscuro */
+    html.dark-mode #event-timer-banner.countdown-active {
+      background-color: var(--secondary-color); /* Naranja del modo oscuro */
+      color: #1a202c;
+    }
+    html.dark-mode #event-timer-banner.countdown-urgent {
+      background-color: #FF8C00; /* Se mantiene Naranja brillante */
+      color: white;
+    }
+    html.dark-mode #event-timer-banner.event-live {
+      background-color: #39FF14; /* Se mantiene Verde neón */
+      color: #1a202c;
+      text-shadow: 0 0 5px black;
+    }
+    html.dark-mode #event-timer-banner.event-finished {
+      background-color: white; /* Se invierte a blanco */
+      color: black;
+    }
+
+    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid var(--border-color); background-color: var(--header-bg-color); transition: background-color 0.3s, border-color 0.3s; margin-top: 0; }
     .header .main-banner { max-width: 220px; height: auto; margin-bottom: 20px; }
     .event-title { font-size: 1.8em; color: var(--text-color); margin: 15px 0; font-weight: bold; }
     .event-tag-container { max-width: 800px; margin: 0 auto; } .event-tag { font-size: 1.1em; color: var(--text-color-light); margin: 0; line-height: 1.6; } .event-tag b { color: var(--primary-color); }
@@ -74,14 +112,14 @@
     @media (min-width: 769px) { .video-grid, .maps-grid-container { grid-template-columns: repeat(2, 1fr); } .chart-row-double { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
     @media screen and (max-width: 768px) {
-      .event-title { font-size: 1.5em; } .event-tag, .nav-button, .sort-button, .footer p, .countdown-banner { font-size: 0.9em; } .nav-button, .sort-button { padding: 8px 12px; }
+      .event-title { font-size: 1.5em; } .event-tag, .nav-button, .sort-button, .footer p { font-size: 0.9em; } .nav-button, .sort-button { padding: 8px 12px; }
       .lotes-table { box-shadow: none; } .lotes-table thead { display: none; }
       .lotes-table, .lotes-table tbody, .lotes-table tr, .lotes-table td { display: block; width: 100%; box-sizing: border-box;}
       .lotes-table tr { margin-bottom: 15px; border: 1px solid var(--border-color); border-radius: 5px; background-color: var(--card-bg-color); box-shadow: var(--card-shadow); }
       .lotes-table td { text-align: right; padding-left: 50%; position: relative; border: none; border-bottom: 1px solid var(--border-color); } .lotes-table td:last-child { border-bottom: none; }
       .lotes-table td::before { content: attr(data-label); position: absolute; left: 15px; width: calc(50% - 20px); text-align: left; font-weight: bold; color: var(--text-color); }
     }
-  </style></head><body><div id="countdown-banner" class="countdown-banner"></div><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button active">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button " data-column="corral" data-label="Corral" data-order="asc">Corral </button>
+  </style></head><body><div id="event-timer-banner"></div><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">🔨 Remate Feria</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button ">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button active">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><div class="sort-controls"><button class="sort-button " data-column="corral" data-label="Corral" data-order="asc">Corral </button>
 <button class="sort-button " data-column="grupo" data-label="Grupo" data-order="asc">Grupo </button>
 <button class="sort-button " data-column="categoria" data-label="Categoría" data-order="asc">Categoría </button>
 <button class="sort-button active" data-column="cantidad" data-label="Cantidad" data-order="desc">Cantidad 🔽</button>
@@ -94,7 +132,7 @@
 <button class="sort-button " data-column="calificacion" data-label="Calificación" data-order="asc">Calificación </button></div><main class="container"><h2 class="category-title">2️⃣ Toro</h2><div id="video-grid-container" class="video-grid">
     <div class="card">
       <div class="video-wrapper" onclick="window.open('https://www.youtube.com/watch?v=weflWRDd_ig', '_blank')">
-        <iframe src="https://www.youtube.com/embed/$weflWRDd_ig" title="14 Terneros E 137kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/weflWRDd_ig" title="14 Terneros E 137kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="card-content">
         <h3 class="card-title">14 Terneros E 137kg con 30 días</h3>
@@ -107,7 +145,7 @@
     </div>
     <div class="card">
       <div class="video-wrapper" onclick="window.open('https://www.youtube.com/watch?v=o56awoE-KJE', '_blank')">
-        <iframe src="https://www.youtube.com/embed/$o56awoE-KJE" title="14 Terneros C 126kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/o56awoE-KJE" title="14 Terneros C 126kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="card-content">
         <h3 class="card-title">14 Terneros C 126kg con 30 días</h3>
@@ -120,7 +158,7 @@
     </div>
     <div class="card">
       <div class="video-wrapper" onclick="window.open('https://www.youtube.com/watch?v=weflWRDd_ig', '_blank')">
-        <iframe src="https://www.youtube.com/embed/$weflWRDd_ig" title="14 Terneros E 137kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/weflWRDd_ig" title="14 Terneros E 137kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="card-content">
         <h3 class="card-title">14 Terneros E 137kg con 30 días</h3>
@@ -145,7 +183,7 @@
       </div>
     </div><script>
         document.addEventListener('DOMContentLoaded', function() {
-          const lotesData = [{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/$weflWRDd_ig","qrCode":"https://quickchart.io/qr?text=ef6db4cd","videoUrlFullscreen":"https://www.youtube.com/embed/$weflWRDd_ig?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":181,"descriptionHTML":"🆔 <b>b4cd</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":17,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros C 126kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=o56awoE-KJE","embedUrl":"https://www.youtube.com/embed/$o56awoE-KJE","qrCode":"https://quickchart.io/qr?text=b6f368e7","videoUrlFullscreen":"https://www.youtube.com/embed/$o56awoE-KJE?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20C%20126kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Do56awoE-KJE","grupo":"2️⃣ Toro","peso":203,"descriptionHTML":"🆔 <b>68e7</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"3","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/$weflWRDd_ig","qrCode":"https://quickchart.io/qr?text=33c1219d","videoUrlFullscreen":"https://www.youtube.com/embed/$weflWRDd_ig?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":165,"descriptionHTML":"🆔 <b>219d</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""}];
+          const lotesData = [{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/weflWRDd_ig","qrCode":"https://quickchart.io/qr?text=ef6db4cd","videoUrlFullscreen":"https://www.youtube.com/embed/weflWRDd_ig?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":181,"descriptionHTML":"🆔 <b>b4cd</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":17,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros C 126kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=o56awoE-KJE","embedUrl":"https://www.youtube.com/embed/o56awoE-KJE","qrCode":"https://quickchart.io/qr?text=b6f368e7","videoUrlFullscreen":"https://www.youtube.com/embed/o56awoE-KJE?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20C%20126kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Do56awoE-KJE","grupo":"2️⃣ Toro","peso":203,"descriptionHTML":"🆔 <b>68e7</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"3","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/weflWRDd_ig","qrCode":"https://quickchart.io/qr?text=33c1219d","videoUrlFullscreen":"https://www.youtube.com/embed/weflWRDd_ig?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":165,"descriptionHTML":"🆔 <b>219d</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""}];
           const tbody = document.getElementById('lotes-tbody');
           const gridContainer = document.getElementById('video-grid-container');
           const numericColumns = ['cantidad', 'peso'];
@@ -155,21 +193,21 @@
           function renderTable(lotes) { if (!tbody) return; tbody.innerHTML = lotes.map(l => `<tr onclick="window.open('${l.videoUrl}','_blank')" style="cursor:pointer;"><td data-label="Corral"><b>${l.corral||''}</b></td><td data-label="Grupo"><b>${l.grupo||''}</b></td><td data-label="Categoría"><b>${l.categoria||''}</b></td><td data-label="Cantidad"><b style="color:${getColorForValue(l.cantidad,minCantidad,maxCantidad)}; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">${l.cantidad||''}</b></td><td data-label="Peso"><b style="color:${getColorForValue(l.peso,minPeso,maxPeso)}; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">${l.peso||''}</b></td><td data-label="Plazo">${l.plazo||''}</td><td data-label="Sanidad">${l.sanidad||''}</td><td data-label="China">${l.china||''}</td><td data-label="Motivo">${l.motivo||''}</td><td data-label="Reproducción">${l.reproduccion||''}</td><td data-label="Calificación">${l.calificacion||''}</td></tr>`).join(''); }
           
         function renderGrid(lotes) { 
-            if (!gridContainer) return; 
-            gridContainer.innerHTML = lotes.map(l => `
-                <div class="card">
-                    <div class="video-wrapper" onclick="window.open('${l.videoUrl || '#'}', '_blank')">
-                        <iframe src="${l.embedUrl}" title="${l.titulo}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">${l.titulo}</h3>
-                        <div class="card-description">${l.descriptionHTML}</div>
-                        <div class="card-buttons">
-                            <a href="https://api.whatsapp.com/send?text=${l.whatsappText}" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">WhatsApp</a>
-                            ${l.qrCode ? `<button class="qr-button" onclick="showQrPopup('${l.titulo.replace(/'/g, "\\'")}', '${l.qrCode}'); event.stopPropagation();">QR</button>` : ''}
-                        </div>
-                    </div>
-                </div>`).join(''); 
+          if (!gridContainer) return; 
+          gridContainer.innerHTML = lotes.map(l => `
+            <div class="card">
+              <div class="video-wrapper" onclick="window.open('${l.videoUrl || '#'}', '_blank')">
+                <iframe src="${l.embedUrl}" title="${l.titulo}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <div class="card-content">
+                <h3 class="card-title">${l.titulo}</h3>
+                <div class="card-description">${l.descriptionHTML}</div>
+                <div class="card-buttons">
+                  <a href="https://api.whatsapp.com/send?text=${l.whatsappText}" class="whatsapp-button" target="_blank" onclick="event.stopPropagation();">WhatsApp</a>
+                  ${l.qrCode ? `<button class="qr-button" onclick="showQrPopup('${l.titulo.replace(/'/g, "\\'")}', '${l.qrCode}'); event.stopPropagation();">QR</button>` : ''}
+                </div>
+              </div>
+            </div>`).join(''); 
         }
           function sortAndRender(col, order) { let sorted = [...lotesData]; sorted.sort((a,b) => { const vA=a[col],vB=b[col]; if (numericColumns.includes(col)) return order==='asc'?(parseFloat(vA)||0)-(parseFloat(vB)||0):(parseFloat(vB)||0)-(parseFloat(vA)||0); else { const sA=String(vA||'').toLowerCase(),sB=String(vB||'').toLowerCase(); if(sA<sB)return order==='asc'?-1:1; if(sA>sB)return order==='asc'?1:-1; return 0; }}); if(tbody)renderTable(sorted); if(gridContainer)renderGrid(sorted); }
           function handleSortClick(e) { const t=e.currentTarget,active=t.classList.contains('active'),col=t.dataset.column; let order=t.dataset.order,newOrder=active?(order==='asc'?'desc':'asc'):(numericColumns.includes(col)?'desc':'asc'); document.querySelectorAll('.sort-button,.sortable-header').forEach(el=>{el.classList.remove('active');if(el.dataset.label&&el.innerHTML!==el.dataset.label){el.innerHTML=el.dataset.label;}}); t.classList.add('active'); t.dataset.order=newOrder; t.innerHTML=`${t.dataset.label} ${newOrder==='asc'?'🔼':'🔽'}`; sortAndRender(col,newOrder); }
@@ -228,71 +266,77 @@
   </script>
   <script>
     (function() {
-        const countdownElement = document.getElementById('countdown-banner');
-        if (!countdownElement) return;
+      const banner = document.getElementById('event-timer-banner');
+      if (!banner) return;
 
-        // Las fechas se obtienen del objeto datosEvento y se inyectan aquí
-        const startTimeString = 'Thu Jul 03 2025 14:30:00 GMT-0300 (GMT-03:00)';
-        const endTimeString = 'Thu Jul 03 2025 20:00:00 GMT-0300 (GMT-03:00)';
-        
-        // Es crucial que el formato de fecha en Google Sheets sea interpretable por new Date()
-        // Formatos recomendados: "YYYY-MM-DDTHH:mm:ss" o "MM/DD/YYYY HH:mm:ss"
-        const startTime = new Date(startTimeString).getTime();
-        const endTime = new Date(endTimeString).getTime();
+      // Las fechas se insertan desde Google Apps Script en formato ISO para fiabilidad.
+      const startDateStr = "2025-07-03T17:30:00.000Z";
+      const endDateStr = "2025-07-03T23:00:00.000Z";
 
-        if (isNaN(startTime) || isNaN(endTime)) {
-            countdownElement.style.display = 'none'; // Oculta el banner si las fechas no son válidas
-            console.error("Fechas de evento no válidas. Banner de cuenta regresiva oculto.");
+      if (!startDateStr || !endDateStr) {
+        banner.style.display = 'none';
+        return;
+      }
+
+      const startDate = new Date(startDateStr);
+      const endDate = new Date(endDateStr);
+
+      if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        banner.style.display = 'none';
+        return;
+      }
+      
+      let timerInterval;
+
+      const updateBanner = () => {
+        const now = new Date();
+
+        if (now < startDate) {
+          // Estado: Cuenta Regresiva
+          const timeLeft = startDate.getTime() - now.getTime();
+
+          if (timeLeft <= 0) {
+            // El tiempo ha terminado, recargar en 1.5s para mostrar el estado "AHORA"
+            clearInterval(timerInterval);
+            setTimeout(() => window.location.reload(), 1500);
             return;
+          }
+
+          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+          
+          let countdownText = `🗓 ${days} Días ⏱ ${hours} Horas ⏲ ${minutes} Minutos ⏱ ${seconds} Segundos`;
+          
+          banner.className = ''; // Limpiar clases previas
+          
+          if (timeLeft < 24 * 60 * 60 * 1000) {
+             banner.classList.add('countdown-urgent');
+             countdownText = `🎆 ${countdownText} 🌆`;
+          } else {
+             banner.classList.add('countdown-active');
+          }
+          
+          banner.innerHTML = countdownText;
+
+        } else if (now >= startDate && now <= endDate) {
+          // Estado: Evento en curso
+          if (timerInterval) clearInterval(timerInterval);
+          banner.className = 'event-live';
+          banner.innerHTML = '🐮 AHORA 🐄';
+
+        } else {
+          // Estado: Evento Finalizado
+          if (timerInterval) clearInterval(timerInterval);
+          banner.className = 'event-finished';
+          banner.innerHTML = '🔨 Remate Finalizado';
         }
-
-        const getClockEmojiForCurrentTime = () => {
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const hour12 = hours % 12 === 0 ? 12 : hours % 12;
-            const isHalf = minutes >= 15 && minutes < 45; // Más flexible para "cercano a la media hora"
-            const emojis = ['🕛','🕧','🕐','🕜','🕑','🕝','🕒','🕞','🕓','🕟','🕔','🕠','🕕','🕡','🕖','🕢','🕗','🕣','🕘','🕤','🕙','🕥','🕚','🕦'];
-            let index = (hour12 - 1) * 2;
-            if (isHalf) {
-                index++;
-            }
-            return emojis[index] || '🕒'; // Fallback emoji
-        };
-
-        const interval = setInterval(() => {
-            const now = new Date().getTime();
-            
-            if (now > endTime) {
-                countdownElement.innerHTML = "🔨 Remate Finalizado";
-                clearInterval(interval);
-                return;
-            }
-
-            if (now >= startTime && now <= endTime) {
-                countdownElement.innerHTML = "🐮 AHORA 🐄";
-                clearInterval(interval);
-                return;
-            }
-            
-            const distance = startTime - now;
-            if (distance < 0) {
-                 // Esto no debería pasar si la lógica anterior es correcta, pero es un seguro
-                countdownElement.innerHTML = "🐮 AHORA 🐄";
-                clearInterval(interval);
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            const clockEmoji = getClockEmojiForCurrentTime();
-
-            countdownElement.innerHTML = `🗓 ${days} Días ${clockEmoji} ${hours} Horas ⏱ ${minutes} Minutos ⏲ ${seconds} Segundos`;
-
-        }, 1000);
+        
+        banner.style.display = 'block'; // Asegurarse de que el banner sea visible
+      };
+      
+      updateBanner(); // Llamada inicial para establecer el estado correcto sin esperar 1 segundo.
+      timerInterval = setInterval(updateBanner, 1000);
     })();
-  </script>
-  </body></html>
+  </script></body></html>
