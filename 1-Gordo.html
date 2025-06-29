@@ -14,8 +14,23 @@
     .header .main-banner { margin-bottom: 25px; }
     .event-title { font-size: 2.2em; color: #004494; margin: 15px 0; font-weight: bold; }
     .separator { border: 0; height: 1px; background: #ccc; margin: 25px auto; width: 70%; }
-    .event-tag { font-size: 1.3em; color: #444; margin: 0 0 25px 0; font-style: italic; }
-    .transparent-logo { opacity: 0.2; /* 80% de transparencia es 20% de opacidad */ }
+    
+    /* --- INICIO DE ESTILOS MODIFICADOS --- */
+    .event-tag {
+      font-size: 1.5em; /* AUMENTADO para que sea "un poco más grande" */
+      color: #444;
+      margin: 0; /* Quitamos el margen del párrafo, lo manejará el contenedor */
+      line-height: 1.6; /* Mejora la legibilidad en textos multilínea */
+    }
+    .event-tag-container {
+      text-align: center; /* AÑADIDO para centrar el texto */
+      padding: 0 15px; /* Añade un poco de espacio a los lados */
+      margin: 0 auto 25px auto; /* Centra el contenedor y le da margen inferior */
+      max-width: 800px; /* Evita que el texto se extienda demasiado en pantallas grandes */
+    }
+    /* --- FIN DE ESTILOS MODIFICADOS --- */
+
+    .transparent-logo { opacity: 0.2; margin-top: 20px; }
     /* --- FIN: NUEVOS ESTILOS PARA EL INDEX --- */
 
     .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
