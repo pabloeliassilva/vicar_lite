@@ -5,20 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vicar Ganadera - Lista</title>
   <style>
-    /* Estilos Generales */
     :root { --primary-color: #0063a3; --secondary-color: #e67e22; --light-gray: #f4f4f9; --dark-text: #333; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-gray); display: flex; flex-direction: column; min-height: 100vh; }
     .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; width: 95%; }
-   
-    /* Encabezado */
     .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
     .header .main-banner { max-width: 220px; height: auto; margin-bottom: 20px; }
     .event-title { font-size: 1.8em; color: var(--dark-text); margin: 15px 0; font-weight: bold; }
     .event-tag-container { max-width: 800px; margin: 0 auto; }
     .event-tag { font-size: 1.1em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: var(--primary-color); }
-   
-    /* Navegación y Botones de Ordenamiento */
     .nav-container, .sort-controls { text-align: center; padding: 15px 10px; background-color: #f8f8f8; }
     .nav-container { border-bottom: 1px solid #ddd; flex-wrap: wrap; display: flex; justify-content: center; gap: 8px;}
     .sort-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; border-bottom: 1px solid #ddd; }
@@ -29,8 +24,6 @@
     .sort-button { background-color: #6c757d; font-size: 0.9em; }
     .sort-button:hover { background-color: #5a6268; }
     .sort-button.active { background-color: var(--primary-color); font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-
-    /* Contenido de Categoría y Tarjetas */
     .category-title { font-size: 1.8em; text-align: center; color: var(--dark-text); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-top: 10px; margin-bottom: 30px; }
     .video-grid, .maps-grid-container { display: grid; gap: 25px; grid-template-columns: 1fr; }
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
@@ -41,27 +34,17 @@
     .card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 15px 0; color: var(--dark-text); }
     .card-description { font-size: 0.95em; color: #555; text-align: left; line-height: 1.5; }
     .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
-
-    /* Estilos de Tabla Responsiva */
     .table-container { width: 100%; overflow-x: auto; margin-top: 10px; }
     .lotes-table { border-collapse: collapse; width: 100%; margin: 0; font-size: 1em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white; }
     .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; }
     .lotes-table th { background-color: var(--primary-color); color: white; font-weight: bold; }
     .lotes-table tbody tr:nth-child(even) { background-color: #f8f8f8; }
-   
-    /* Pie de página */
+    /* ¡NUEVO! Estilo para fila clicable */
+    .lotes-table tbody tr:hover { background-color: #e9ecef; }
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
-   
-    /* Media Queries */
-    @media (min-width: 769px) {
-      .video-grid { grid-template-columns: repeat(2, 1fr); }
-      .maps-grid-container { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 1050px) {
-      .video-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
+    @media (min-width: 769px) { .video-grid { grid-template-columns: repeat(2, 1fr); } .maps-grid-container { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
     @media screen and (max-width: 768px) {
       .event-title { font-size: 1.5em; }
       .event-tag, .nav-button, .sort-button, .footer p { font-size: 0.9em; }
@@ -91,109 +74,122 @@
       <table class="lotes-table">
         <thead>
           <tr>
-            <th>Grupo</th><th>Categoría</th><th>Corral</th><th>Cantidad</th><th>Peso</th><th>Plazo</th><th>Sanidad</th><th>China</th><th>Motivo</th><th>Reproducción</th><th>Calificación</th><th>Notas</th>
+            <th>Grupo</th><th>Categoría</th><th>Corral</th><th>Cantidad</th><th>Peso</th><th>Plazo</th><th>Sanidad</th><th>China</th><th>Motivo</th><th>Reproducción</th><th>Calificación</th>
           </tr>
         </thead>
         <tbody id="lotes-tbody">
           
-    <tr>
-      <td data-label="Grupo">1️⃣ Gordo</td>
+    <tr onclick="window.open('https://www.youtube.com/embed/w21Kol4KnmM?autoplay=1&mute=1', '_blank')" style="cursor: pointer;">
+      <td data-label="Grupo"><b>1️⃣ Gordo</b></td>
       <td data-label="Categoría"><b>🟢 Novillito</b></td>
-      <td data-label="Corral">1</td>
-      <td data-label="Cantidad"><b>26</b></td>
-      <td data-label="Peso"><b>214</b></td>
+      <td data-label="Corral"><b>1</b></td>
+      <td data-label="Cantidad"><b style="color: hsl(0, 100%, 0%);">26</b></td>
+      <td data-label="Peso"><b style="color: hsl(0, 100%, 0%);">214</b></td>
       <td data-label="Plazo">90</td>
       <td data-label="Sanidad">Sin</td>
       <td data-label="China">No</td>
       <td data-label="Motivo">Faena</td>
       <td data-label="Reproducción">E</td>
       <td data-label="Calificación">⭐⭐</td>
-      <td data-label="Notas"></td>
     </tr>
-    <tr>
-      <td data-label="Grupo">2️⃣ Toro</td>
+    <tr onclick="window.open('https://www.youtube.com/embed/weflWRDd_ig?autoplay=1&mute=1', '_blank')" style="cursor: pointer;">
+      <td data-label="Grupo"><b>2️⃣ Toro</b></td>
       <td data-label="Categoría"><b>⚫ Toro</b></td>
-      <td data-label="Corral">5</td>
-      <td data-label="Cantidad"><b>17</b></td>
-      <td data-label="Peso"><b>179</b></td>
+      <td data-label="Corral"><b>5</b></td>
+      <td data-label="Cantidad"><b style="color: hsl(16.363636363636363, 100%, 32.54132231404958%);">17</b></td>
+      <td data-label="Peso"><b style="color: hsl(27.450980392156865, 100%, 45.078815840061516%);">179</b></td>
       <td data-label="Plazo">90</td>
       <td data-label="Sanidad">Sin</td>
       <td data-label="China">No</td>
       <td data-label="Motivo">Reproducción</td>
       <td data-label="Reproducción">E</td>
       <td data-label="Calificación">⭐</td>
-      <td data-label="Notas"></td>
     </tr>
-    <tr>
-      <td data-label="Grupo">6️⃣ Macho</td>
+    <tr onclick="window.open('https://www.youtube.com/embed/w21Kol4KnmM?autoplay=1&mute=1', '_blank')" style="cursor: pointer;">
+      <td data-label="Grupo"><b>6️⃣ Macho</b></td>
       <td data-label="Categoría"><b>🟢 Novillito</b></td>
-      <td data-label="Corral">3</td>
-      <td data-label="Cantidad"><b>10</b></td>
-      <td data-label="Peso"><b>190</b></td>
+      <td data-label="Corral"><b>3</b></td>
+      <td data-label="Cantidad"><b style="color: hsl(29.090909090909093, 100%, 46.28099173553719%);">10</b></td>
+      <td data-label="Peso"><b style="color: hsl(18.823529411764707, 100%, 35.98615916955017%);">190</b></td>
       <td data-label="Plazo">120</td>
       <td data-label="Sanidad">Sin</td>
       <td data-label="China">No</td>
       <td data-label="Motivo">Faena</td>
       <td data-label="Reproducción">CyE</td>
       <td data-label="Calificación">⭐⭐</td>
-      <td data-label="Notas"></td>
     </tr>
-    <tr>
-      <td data-label="Grupo">2️⃣ Toro</td>
+    <tr onclick="window.open('https://www.youtube.com/embed/o56awoE-KJE?autoplay=1&mute=1', '_blank')" style="cursor: pointer;">
+      <td data-label="Grupo"><b>2️⃣ Toro</b></td>
       <td data-label="Categoría"><b>⚫ Toro</b></td>
-      <td data-label="Corral">3</td>
-      <td data-label="Cantidad"><b>4</b></td>
-      <td data-label="Peso"><b>185</b></td>
+      <td data-label="Corral"><b>3</b></td>
+      <td data-label="Cantidad"><b style="color: hsl(40, 100%, 50%);">4</b></td>
+      <td data-label="Peso"><b style="color: hsl(21.176470588235293, 100%, 38.92733564013841%);">187</b></td>
       <td data-label="Plazo">90</td>
       <td data-label="Sanidad">Sin</td>
       <td data-label="China">No</td>
       <td data-label="Motivo">Reproducción</td>
       <td data-label="Reproducción">E</td>
       <td data-label="Calificación">⭐</td>
-      <td data-label="Notas"></td>
     </tr>
-    <tr>
-      <td data-label="Grupo">2️⃣ Toro</td>
+    <tr onclick="window.open('https://www.youtube.com/embed/weflWRDd_ig?autoplay=1&mute=1', '_blank')" style="cursor: pointer;">
+      <td data-label="Grupo"><b>2️⃣ Toro</b></td>
       <td data-label="Categoría"><b>⚫ Toro</b></td>
-      <td data-label="Corral">5</td>
-      <td data-label="Cantidad"><b>4</b></td>
-      <td data-label="Peso"><b>163</b></td>
+      <td data-label="Corral"><b>5</b></td>
+      <td data-label="Cantidad"><b style="color: hsl(40, 100%, 50%);">4</b></td>
+      <td data-label="Peso"><b style="color: hsl(40, 100%, 50%);">163</b></td>
       <td data-label="Plazo">90</td>
       <td data-label="Sanidad">Sin</td>
       <td data-label="China">No</td>
       <td data-label="Motivo">Reproducción</td>
       <td data-label="Reproducción">E</td>
       <td data-label="Calificación">⭐</td>
-      <td data-label="Notas"></td>
     </tr>
         </tbody>
       </table>
     </div></main><footer class="footer"><p>Vicar Ganadera S.A. - Consignatarios desde 1964</p></footer>
       <script>
         document.addEventListener('DOMContentLoaded', function() {
-          const lotesData = [{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","embedUrl":"https://www.youtube.com/embed/w21Kol4KnmM","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM","grupo":"1️⃣ Gordo","peso":214,"descriptionHTML":"🆔 <b>4837</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":"1","categoria":"🟢 Novillito","cantidad":26,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"E","calificacion":"⭐⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/weflWRDd_ig","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":179,"descriptionHTML":"🆔 <b>b4cd</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":17,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","embedUrl":"https://www.youtube.com/embed/w21Kol4KnmM","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM","grupo":"6️⃣ Macho","peso":190,"descriptionHTML":"🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":3,"categoria":"🟢 Novillito","cantidad":10,"plazo":"120","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"CyE","calificacion":"⭐⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros C 126kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=o56awoE-KJE","embedUrl":"https://www.youtube.com/embed/o56awoE-KJE","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20C%20126kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Do56awoE-KJE","grupo":"2️⃣ Toro","peso":185,"descriptionHTML":"🆔 <b>68e7</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"3","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/weflWRDd_ig","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":163,"descriptionHTML":"🆔 <b>219d</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""}];
+          const lotesData = [{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","embedUrl":"https://www.youtube.com/embed/w21Kol4KnmM","videoUrlFullscreen":"https://www.youtube.com/embed/w21Kol4KnmM?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM","grupo":"1️⃣ Gordo","peso":214,"descriptionHTML":"🆔 <b>4837</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":"1","categoria":"🟢 Novillito","cantidad":26,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"E","calificacion":"⭐⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/weflWRDd_ig","videoUrlFullscreen":"https://www.youtube.com/embed/weflWRDd_ig?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":179,"descriptionHTML":"🆔 <b>b4cd</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":17,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"13 Terneros C 122kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=w21Kol4KnmM","embedUrl":"https://www.youtube.com/embed/w21Kol4KnmM","videoUrlFullscreen":"https://www.youtube.com/embed/w21Kol4KnmM?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM","grupo":"6️⃣ Macho","peso":190,"descriptionHTML":"🆔 <b>0fef</b><br>Plazo: <b>120</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Faena</b><br>Reproducción: <b>CyE</b><br>Calificación: <b>⭐⭐</b><br>Notas: <b></b>","corral":3,"categoria":"🟢 Novillito","cantidad":10,"plazo":"120","sanidad":"Sin","china":"No","motivo":"Faena","reproduccion":"CyE","calificacion":"⭐⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros C 126kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=o56awoE-KJE","embedUrl":"https://www.youtube.com/embed/o56awoE-KJE","videoUrlFullscreen":"https://www.youtube.com/embed/o56awoE-KJE?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20C%20126kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Do56awoE-KJE","grupo":"2️⃣ Toro","peso":187,"descriptionHTML":"🆔 <b>68e7</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"3","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""},{"idEvento":"18950555","titulo":"14 Terneros E 137kg con 30 días","videoUrl":"https://www.youtube.com/watch?v=weflWRDd_ig","embedUrl":"https://www.youtube.com/embed/weflWRDd_ig","videoUrlFullscreen":"https://www.youtube.com/embed/weflWRDd_ig?autoplay=1&mute=1","whatsappText":"Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2014%20Terneros%20E%20137kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DweflWRDd_ig","grupo":"2️⃣ Toro","peso":163,"descriptionHTML":"🆔 <b>219d</b><br>Plazo: <b>90</b><br>Sanidad: <b>Sin</b><br>China: <b>No</b><br>Motivo: <b>Reproducción</b><br>Reproducción: <b>E</b><br>Calificación: <b>⭐</b><br>Notas: <b></b>","corral":"5","categoria":"⚫ Toro","cantidad":4,"plazo":"90","sanidad":"Sin","china":"No","motivo":"Reproducción","reproduccion":"E","calificacion":"⭐","notas":""}];
           const tbody = document.getElementById('lotes-tbody');
           const gridContainer = document.getElementById('video-grid-container');
           const sortButtons = document.querySelectorAll('.sort-button');
-          // 'corral' se trata como texto, no necesita estar en numericColumns.
           const numericColumns = ['cantidad', 'peso'];
 
+          // Pre-calcular min y max para el formato de color
+          const pesos = lotesData.map(l => l.peso).filter(v => v > 0);
+          const cantidades = lotesData.map(l => l.cantidad).filter(v => v > 0);
+          const minPeso = Math.min(...pesos);
+          const maxPeso = Math.max(...pesos);
+          const minCantidad = Math.min(...cantidades);
+          const maxCantidad = Math.max(...cantidades);
+
+          function getColorForValue(value, min, max) {
+              if (min === max) return 'hsl(0, 0%, 0%)';
+              const p = (value - min) / (max - min);
+              const hue = 40 - (p * 40);
+              const lightness = Math.max(0, 50 - (p * p * 50));
+              return `hsl(${hue}, 100%, ${lightness}%)`;
+          }
+
           function renderTable(lotes) {
-            tbody.innerHTML = lotes.map(lote => `
-              <tr>
-                <td data-label="Grupo">${lote.grupo || ''}</td>
-                <td data-label="Categoría"><b>${lote.categoria || ''}</b></td>
-                <td data-label="Corral">${lote.corral || ''}</td>
-                <td data-label="Cantidad"><b>${lote.cantidad || ''}</b></td>
-                <td data-label="Peso"><b>${lote.peso || ''}</b></td>
-                <td data-label="Plazo">${lote.plazo || ''}</td>
-                <td data-label="Sanidad">${lote.sanidad || ''}</td>
-                <td data-label="China">${lote.china || ''}</td>
-                <td data-label="Motivo">${lote.motivo || ''}</td>
-                <td data-label="Reproducción">${lote.reproduccion || ''}</td>
-                <td data-label="Calificación">${lote.calificacion || ''}</td>
-                <td data-label="Notas">${lote.notas || ''}</td>
-              </tr>`).join('');
+            tbody.innerHTML = lotes.map(lote => {
+              const colorPeso = getColorForValue(lote.peso, minPeso, maxPeso);
+              const colorCantidad = getColorForValue(lote.cantidad, minCantidad, maxCantidad);
+              return `
+                <tr onclick="window.open('${lote.videoUrlFullscreen}', '_blank')" style="cursor: pointer;">
+                  <td data-label="Grupo"><b>${lote.grupo || ''}</b></td>
+                  <td data-label="Categoría"><b>${lote.categoria || ''}</b></td>
+                  <td data-label="Corral"><b>${lote.corral || ''}</b></td>
+                  <td data-label="Cantidad"><b style="color: ${colorCantidad};">${lote.cantidad || ''}</b></td>
+                  <td data-label="Peso"><b style="color: ${colorPeso};">${lote.peso || ''}</b></td>
+                  <td data-label="Plazo">${lote.plazo || ''}</td>
+                  <td data-label="Sanidad">${lote.sanidad || ''}</td>
+                  <td data-label="China">${lote.china || ''}</td>
+                  <td data-label="Motivo">${lote.motivo || ''}</td>
+                  <td data-label="Reproducción">${lote.reproduccion || ''}</td>
+                  <td data-label="Calificación">${lote.calificacion || ''}</td>
+                </tr>`;
+            }).join('');
           }
 
           function renderGrid(lotes) {
@@ -215,11 +211,8 @@
             sortedLotes.sort((a, b) => {
               const valA = a[column];
               const valB = b[column];
-
               if (numericColumns.includes(column)) {
-                const numA = parseFloat(valA) || 0;
-                const numB = parseFloat(valB) || 0;
-                return order === 'asc' ? numA - numB : numB - numA;
+                return order === 'asc' ? (parseFloat(valA) || 0) - (parseFloat(valB) || 0) : (parseFloat(valB) || 0) - (parseFloat(valA) || 0);
               } else {
                 const strA = String(valA || '').toLowerCase();
                 const strB = String(valB || '').toLowerCase();
@@ -228,7 +221,6 @@
                 return 0;
               }
             });
-
             if (tbody) renderTable(sortedLotes);
             if (gridContainer) renderGrid(sortedLotes);
           }
@@ -238,29 +230,18 @@
               const wasActive = this.classList.contains('active');
               const column = this.dataset.column;
               let currentOrder = this.dataset.order;
-             
-              let newOrder;
-              if (wasActive) {
-                newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
-              } else {
-                newOrder = numericColumns.includes(column) ? 'desc' : 'asc';
-              }
-             
+              let newOrder = wasActive ? (currentOrder === 'asc' ? 'desc' : 'asc') : (numericColumns.includes(column) ? 'desc' : 'asc');
+              
               sortButtons.forEach(btn => {
                 btn.classList.remove('active');
-                // Quita el icono de los botones inactivos
-                const label = btn.dataset.label;
-                if(btn.innerHTML !== label) {
-                    btn.innerHTML = label;
+                if (btn.dataset.label !== btn.innerHTML) {
+                    btn.innerHTML = btn.dataset.label;
                 }
               });
 
               this.classList.add('active');
               this.dataset.order = newOrder;
-              const icon = newOrder === 'asc' ? '🔼' : '🔽';
-              const label = this.dataset.label;
-              this.innerHTML = `${label} ${icon}`;
-             
+              this.innerHTML = `${this.dataset.label} ${newOrder === 'asc' ? '🔼' : '🔽'}`;
               sortAndRender(column, newOrder);
             });
           });
