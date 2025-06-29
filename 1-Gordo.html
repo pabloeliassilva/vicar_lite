@@ -2,87 +2,92 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vicar Ganadera - 1️⃣ Gordo</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; display: flex; flex-direction: column; min-height: 100vh; }
-    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
-    .header .main-banner { max-width: 250px; height: auto; margin-bottom: 25px; }
-    .event-title { font-size: 2.2em; color: #333333; margin: 15px 0; font-weight: bold; }
-    .event-tag-container { text-align: center; padding: 0 15px; margin: 15px auto 0 auto; max-width: 800px; }
-    .event-tag { font-size: 1.5em; color: #444; margin: 0; line-height: 1.6; }
-    .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; }
-    .nav-button { display: inline-block; padding: 10px 20px; margin: 5px; background-color: #0063a3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
-    .nav-button:hover { background-color: #004a7c; }
-    .nav-button.active { background-color: #e67e22; }
-    
-    .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
-    .map-container { width: 80%; margin: 20px auto; }
-    
-    .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
-    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
-    
-    .video-wrapper { position: relative; padding-bottom: 56.25%; /* 16:9 Ratio */ height: 0; }
-    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    
-    .card-content { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    .card-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: #333; }
-    .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
-    .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
-    .footer p { margin: 0; }
-    
-    .video-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas por defecto */
-        gap: 25px; /* Espacio entre tarjetas */
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vicar Ganadera - 1️⃣ Gordo</title>
+  <style>
+    /* **** INICIO DE MODIFICACIONES CSS **** */
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; display: flex; flex-direction: column; min-height: 100vh; }
+    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid #ddd; background-color: white; }
+    .header .main-banner { max-width: 250px; height: auto; margin-bottom: 25px; }
+    .event-title { font-size: 2.2em; color: #333333; margin: 15px 0; font-weight: bold; }
+    .separator { border: 0; height: 1px; background: #ccc; margin: 25px auto; width: 70%; }
+    .event-tag-container { text-align: center; padding: 0 15px; margin: 20px auto 0; max-width: 800px; }
+    .event-tag { font-size: 1.5em; color: #444; margin: 0; line-height: 1.6; }
+    .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; }
+    .nav-button { display: inline-block; padding: 10px 20px; margin: 5px; background-color: #0063a3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
+    .nav-button:hover { background-color: #004a7c; }
+    .nav-button.active { background-color: #e67e22; }
+    
+    .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; }
+    .map-container { width: 80%; margin: 20px auto; }
+    
+    .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
+    .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+    
+    .video-wrapper { position: relative; padding-bottom: 56.25%; /* 16:9 Ratio */ height: 0; }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    
+    .card-content { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-title { font-size: 1.1rem; font-weight: 600; margin: 0; color: #333; }
+    .whatsapp-button { display: inline-block; padding: 12px 25px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1rem; margin-top: 15px; }
+    .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
+    .footer p { margin: 0; }
+    
+    /* **** NUEVO: Estilos para la grilla de videos y contenido de tarjetas **** */
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas por defecto */
+        gap: 25px; /* Espacio entre tarjetas */
+    }
 
-    .card-separator {
-        border: 0;
-        height: 1px;
-        background-color: #eee;
-        margin: 15px 0;
-    }
+    .card-separator {
+        border: 0;
+        height: 1px;
+        background-color: #eee;
+        margin: 15px 0;
+    }
 
-    .card-description {
-        font-size: 0.95em;
-        color: #555;
-        text-align: left;
-        line-height: 1.5;
-        margin-bottom: 10px;
-    }
+    .card-description {
+        font-size: 0.95em;
+        color: #555;
+        text-align: left;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
 
-    @media (max-width: 768px) {
-        .video-grid {
-            grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
-        }
-        .map-container {
-            width: 95%; /* El mapa ocupa más ancho en móviles */
-        }
-        .event-title { font-size: 1.8em; }
-        .event-tag { font-size: 1.2em; }
-    }
-  </style>
+    /* **** NUEVO: Media Query para hacer la grilla responsive **** */
+    @media (max-width: 768px) {
+        .video-grid {
+            grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        }
+        .map-container {
+            width: 95%; /* El mapa ocupa más ancho en móviles */
+        }
+        .event-title { font-size: 1.8em; }
+        .event-tag { font-size: 1.2em; }
+    }
+    /* **** FIN DE MODIFICACIONES CSS **** */
+  </style>
 </head>
 <body>
-  
-      
-    <header class="header">
-      <img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner">
-      <h1 class="event-title">Remate Hacienda General</h1>
-      <div class="event-tag-container">
-        <p class="event-tag"><b>VICAR GANADERA S.A</b><br>Jueves 26 de Junio de 2025 a las 14:30hs<br>Predio ferial de Vicar Ganadera S.A., <b>VICTORICA</b>, La Pampa</p>
-      </div>
-    </header>
-      <nav class="nav-container">
-        <a href="index.html" class="nav-button ">Inicio</a><a href="1-Gordo.html" class="nav-button active">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a>
-      </nav>
-      <main class="container">
-        
-        <h2 class="category-title">1️⃣ Gordo</h2>
-        <div class="video-grid">
-            
+  
+      
+    <header class="header">
+      <img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner">
+      <h1 class="event-title">Remate Hacienda General</h1>
+      <div class="event-tag-container">
+        <p class="event-tag"><b>VICAR GANADERA S.A</b><br>Jueves 26 de Junio de 2025 a las 14:30hs<br>Predio ferial de Vicar Ganadera S.A., <b>VICTORICA</b>, La Pampa</p>
+      </div>
+    </header>
+      <nav class="nav-container">
+        <a href="index.html" class="nav-button ">Inicio</a><a href="1-Gordo.html" class="nav-button active">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a>
+      </nav>
+      <main class="container">
+        
+        <h2 class="category-title">1️⃣ Gordo</h2>
+        <div class="video-grid">
+            
 <div class="card">
   <div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/w21Kol4KnmM" title="13 Terneros C 122kg con 30 días" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -91,18 +96,18 @@
     <div>
       <h3 class="card-title">13 Terneros C 122kg con 30 días</h3>
       <hr class="card-separator">
-      <div class="card-description">🔵 Ternero</div>
+      <div class="card-description">Grupo: 6️⃣ Macho<br>Categoría: 🔵 Ternero<br>Cantidad: 13<br>Peso: 122<br>Plazo: 30<br>Sanindad: No Requerido<br>China: No Requerido<br>Motivo: Invernada<br>Reproducción: C<br>Calificación: ⭐⭐<br>Notas: <br><br></div>
     </div>
-    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank">Consultar por WhatsApp</a>
+    <a href="https://api.whatsapp.com/send?text=Hola%2C%20estoy%20interesado%20en%20este%20lote%20de%20Vicar%3A%2013%20Terneros%20C%20122kg%20con%2030%20d%C3%ADas.%20Video%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dw21Kol4KnmM" class="whatsapp-button" target="_blank">WhatsApp</a>
   </div>
 </div>
-        </div>
-    
-      </main>
-      
-    <footer class="footer">
-      <p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p>
-    </footer>
-    
+        </div>
+    
+      </main>
+      
+    <footer class="footer">
+      <p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p>
+    </footer>
+    
 </body>
 </html>
