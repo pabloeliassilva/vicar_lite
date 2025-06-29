@@ -7,7 +7,6 @@
       --border-color: #ddd; --table-row-even-bg: #f8f8f8; --table-row-hover-bg: #e9ecef;
       --button-secondary-bg: #6c757d; --button-secondary-hover: #5a6268; --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
       --qr-button-bg: #555; --qr-button-hover: #333;
-      --countdown-bg: #005a9e; --countdown-text: #ffffff;
     }
     html.dark-mode {
       --bg-color: #1a202c; --card-bg-color: #2d3748; --text-color: #E2E8F0; --text-color-light: #A0AEC0;
@@ -16,13 +15,27 @@
       --border-color: #4A5568; --table-row-even-bg: #2c3a4f; --table-row-hover-bg: #3a4b64;
       --button-secondary-bg: #4A5568; --button-secondary-hover: #2D3748; --card-shadow: 0 4px 8px rgba(0,0,0,0.3);
       --qr-button-bg: #A0AEC0; --qr-button-hover: #718096;
-      --countdown-bg: #F6AD55; --countdown-text: #1a202c;
+    }
+    /* NUEVO: Estilos para el banner de cuenta regresiva */
+    .countdown-banner {
+      background-color: var(--secondary-color);
+      color: white;
+      text-align: center;
+      padding: 8px 10px;
+      font-size: 1em;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      width: 100%;
+      box-sizing: border-box;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    html.dark-mode .countdown-banner {
+      background-color: var(--secondary-color);
     }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; transition: background-color 0.3s, color 0.3s; }
-    #countdown-banner { background-color: var(--countdown-bg); color: var(--countdown-text); text-align: center; padding: 12px; transition: background-color 0.3s, color 0.3s; }
-    #countdown-banner h3 { margin: 0; font-weight: bold; font-size: 1.2rem; letter-spacing: 1px; }
     .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; flex-grow: 1; width: 95%; }
-    .header { text-align: center; padding: 20px 10px; border-bottom: 1px solid var(--border-color); background-color: var(--header-bg-color); transition: background-color 0.3s, border-color 0.3s; }
+    /* Ajuste en el header para que el banner superior no le quite espacio visual */
+    .header { text-align: center; padding: 15px 10px 20px 10px; border-bottom: 1px solid var(--border-color); background-color: var(--header-bg-color); transition: background-color 0.3s, border-color 0.3s; }
     .header .main-banner { max-width: 220px; height: auto; margin-bottom: 20px; }
     .event-title { font-size: 1.8em; color: var(--text-color); margin: 15px 0; font-weight: bold; }
     .event-tag-container { max-width: 800px; margin: 0 auto; } .event-tag { font-size: 1.1em; color: var(--text-color-light); margin: 0; line-height: 1.6; } .event-tag b { color: var(--primary-color); }
@@ -61,14 +74,14 @@
     @media (min-width: 769px) { .video-grid, .maps-grid-container { grid-template-columns: repeat(2, 1fr); } .chart-row-double { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
     @media screen and (max-width: 768px) {
-      .event-title { font-size: 1.5em; } .event-tag, .nav-button, .sort-button, .footer p { font-size: 0.9em; } .nav-button, .sort-button { padding: 8px 12px; }
+      .event-title { font-size: 1.5em; } .event-tag, .nav-button, .sort-button, .footer p, .countdown-banner { font-size: 0.9em; } .nav-button, .sort-button { padding: 8px 12px; }
       .lotes-table { box-shadow: none; } .lotes-table thead { display: none; }
       .lotes-table, .lotes-table tbody, .lotes-table tr, .lotes-table td { display: block; width: 100%; box-sizing: border-box;}
       .lotes-table tr { margin-bottom: 15px; border: 1px solid var(--border-color); border-radius: 5px; background-color: var(--card-bg-color); box-shadow: var(--card-shadow); }
       .lotes-table td { text-align: right; padding-left: 50%; position: relative; border: none; border-bottom: 1px solid var(--border-color); } .lotes-table td:last-child { border-bottom: none; }
       .lotes-table td::before { content: attr(data-label); position: absolute; left: 15px; width: calc(50% - 20px); text-align: left; font-weight: bold; color: var(--text-color); }
     }
-  </style></head><body><div id="countdown-banner"></div><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button active">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><main class="container"><div class="maps-grid-container"><div class="card"><div class="card-content" style="padding-bottom: 8px;"><p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🛰️ VISTA SATELITAL</p></div><div class="video-wrapper"><iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=-36.691283, -64.386801&t=k&z=17&ie=UTF8&iwloc=&output=embed"></iframe></div></div><div class="card"><div class="card-content" style="padding-bottom: 8px;"><p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🗺️ VISTA DE MAPA</p></div><div class="video-wrapper"><iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=-36.691283, -64.386801&z=17&ie=UTF8&iwloc=&output=embed"></iframe></div></div></div></main><div class="theme-switcher-container">
+  </style></head><body><div id="countdown-banner" class="countdown-banner"></div><header class="header"><img src="https://vicar.com.ar/wp-content/uploads/2017/02/logo-vicar-300x80.png" alt="Logo Vicar" class="main-banner"><h1 class="event-title">Remate Hacienda General etc</h1><div class="event-tag-container"><p class="event-tag"><b>Jueves 3 de Julio de 2025 a las 14:30hs</b><br>Predio ferial de la Sociedad Rural de Toay, <b>TOAY</b>, La Pampa</p></div></header><nav class="nav-container"><a href="index.html" class="nav-button active">Inicio</a><a href="Lista.html" class="nav-button ">📋 Lista</a><a href="1-Gordo.html" class="nav-button ">1️⃣ Gordo</a><a href="2-Toro.html" class="nav-button ">2️⃣ Toro</a><a href="6-Macho.html" class="nav-button ">6️⃣ Macho</a></nav><main class="container"><div class="maps-grid-container"><div class="card"><div class="card-content" style="padding-bottom: 8px;"><p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🛰️ VISTA SATELITAL</p></div><div class="video-wrapper"><iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=$-36.691283, -64.386801&t=k&z=17&ie=UTF8&iwloc=&output=embed"></iframe></div></div><div class="card"><div class="card-content" style="padding-bottom: 8px;"><p style="font-size: 0.9em; color: grey; margin: 0; text-align: center;">🗺️ VISTA DE MAPA</p></div><div class="video-wrapper"><iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=$-36.691283, -64.386801&z=17&ie=UTF8&iwloc=&output=embed"></iframe></div></div></div></main><div class="theme-switcher-container">
       <button id="theme-toggle" class="theme-toggle-button">¿Cambiar a Modo Oscuro?</button>
     </div><footer class="footer"><p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p></footer>
     <div id="qrModal" class="modal-overlay">
@@ -82,56 +95,6 @@
         </div>
       </div>
     </div>
-    <script>
-      (function() {
-        const countdownBanner = document.getElementById('countdown-banner');
-        if (!countdownBanner) return;
-
-        // Las fechas se deben pasar en un formato que JS pueda interpretar, como ISO 8601
-        const fechaInicio = new Date('Thu Jul 03 2025 14:30:00 GMT-0300 (GMT-03:00)').getTime();
-        const fechaFinal = new Date('Thu Jul 03 2025 20:00:00 GMT-0300 (GMT-03:00)').getTime();
-
-        function updateBanner() {
-            const ahora = new Date().getTime();
-
-            if (isNaN(fechaInicio) || isNaN(fechaFinal)) {
-                countdownBanner.style.display = 'none';
-                return;
-            }
-
-            if (ahora > fechaFinal) {
-              countdownBanner.innerHTML = '<h3>🔨 Remate Finalizado</h3>';
-              countdownBanner.style.backgroundColor = '#c0392b'; // Rojo oscuro
-              if(document.documentElement.classList.contains('dark-mode')) {
-                countdownBanner.style.backgroundColor = '#e74c3c'; // Rojo más brillante para modo oscuro
-              }
-              return;
-            }
-
-            if (ahora >= fechaInicio && ahora <= fechaFinal) {
-              countdownBanner.innerHTML = '<h3>🐮 AHORA 🐄</h3>';
-              countdownBanner.style.backgroundColor = '#27ae60'; // Verde
-               if(document.documentElement.classList.contains('dark-mode')) {
-                countdownBanner.style.backgroundColor = '#2ecc71'; // Verde más brillante para modo oscuro
-              }
-              return;
-            }
-
-            const distance = fechaInicio - ahora;
-            if (distance > 0) {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                countdownBanner.innerHTML = '<h3>Comienza en: ' + days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ' + '</h3>';
-            }
-        }
-
-        updateBanner(); // Primera ejecución
-        setInterval(updateBanner, 1000); // Actualiza cada segundo
-      })();
-    </script>
     <script>
       const qrModal = document.getElementById('qrModal');
       const qrModalTitle = document.getElementById('qrModalTitle');
@@ -152,7 +115,6 @@
         }
       }
 
-      // Cerrar el modal si se hace clic fuera del contenido
       window.addEventListener('click', function(event) {
         if (event.target == qrModal) {
           hideQrPopup();
@@ -181,4 +143,74 @@
       applyTheme(savedTheme);
       themeToggle.addEventListener('click', () => { const currentTheme = htmlElement.classList.contains('dark-mode') ? 'dark' : 'light'; const newTheme = currentTheme === 'dark' ? 'light' : 'dark'; localStorage.setItem('vicar-theme', newTheme); applyTheme(newTheme); });
     })();
-  </script></body></html>
+  </script>
+  <script>
+    (function() {
+        const countdownElement = document.getElementById('countdown-banner');
+        if (!countdownElement) return;
+
+        // Las fechas se obtienen del objeto datosEvento y se inyectan aquí
+        const startTimeString = 'Thu Jul 03 2025 14:30:00 GMT-0300 (GMT-03:00)';
+        const endTimeString = 'Thu Jul 03 2025 20:00:00 GMT-0300 (GMT-03:00)';
+        
+        // Es crucial que el formato de fecha en Google Sheets sea interpretable por new Date()
+        // Formatos recomendados: "YYYY-MM-DDTHH:mm:ss" o "MM/DD/YYYY HH:mm:ss"
+        const startTime = new Date(startTimeString).getTime();
+        const endTime = new Date(endTimeString).getTime();
+
+        if (isNaN(startTime) || isNaN(endTime)) {
+            countdownElement.style.display = 'none'; // Oculta el banner si las fechas no son válidas
+            console.error("Fechas de evento no válidas. Banner de cuenta regresiva oculto.");
+            return;
+        }
+
+        const getClockEmojiForCurrentTime = () => {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const hour12 = hours % 12 === 0 ? 12 : hours % 12;
+            const isHalf = minutes >= 15 && minutes < 45; // Más flexible para "cercano a la media hora"
+            const emojis = ['🕛','🕧','🕐','🕜','🕑','🕝','🕒','🕞','🕓','🕟','🕔','🕠','🕕','🕡','🕖','🕢','🕗','🕣','🕘','🕤','🕙','🕥','🕚','🕦'];
+            let index = (hour12 - 1) * 2;
+            if (isHalf) {
+                index++;
+            }
+            return emojis[index] || '🕒'; // Fallback emoji
+        };
+
+        const interval = setInterval(() => {
+            const now = new Date().getTime();
+            
+            if (now > endTime) {
+                countdownElement.innerHTML = "🔨 Remate Finalizado";
+                clearInterval(interval);
+                return;
+            }
+
+            if (now >= startTime && now <= endTime) {
+                countdownElement.innerHTML = "🐮 AHORA 🐄";
+                clearInterval(interval);
+                return;
+            }
+            
+            const distance = startTime - now;
+            if (distance < 0) {
+                 // Esto no debería pasar si la lógica anterior es correcta, pero es un seguro
+                countdownElement.innerHTML = "🐮 AHORA 🐄";
+                clearInterval(interval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const clockEmoji = getClockEmojiForCurrentTime();
+
+            countdownElement.innerHTML = `🗓 ${days} Días ${clockEmoji} ${hours} Horas ⏱ ${minutes} Minutos ⏲ ${seconds} Segundos`;
+
+        }, 1000);
+    })();
+  </script>
+  </body></html>
