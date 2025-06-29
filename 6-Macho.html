@@ -18,24 +18,30 @@
     .event-tag-container { text-align: center; padding: 0 15px; margin: 20px auto 0; max-width: 800px; }
     .event-tag { font-size: 1.2em; color: #444; margin: 0; line-height: 1.6; }
     .event-tag b { color: #0056b3; }
-   
+    
     /* Navegación */
     .nav-container { text-align: center; padding: 15px 10px; background-color: #f8f8f8; border-bottom: 1px solid #ddd; }
     .nav-button { display: inline-block; padding: 10px 20px; margin: 5px; background-color: #0063a3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
     .nav-button:hover { background-color: #004a7c; }
     .nav-button.active { background-color: #e67e22; }
-   
+    
+    /* --- ¡NUEVO! Estilos para botones de ordenamiento --- */
+    .sort-controls { text-align: center; margin-bottom: 20px; }
+    .sort-button { background-color: #6c757d; color: white; border: none; padding: 10px 15px; margin: 0 5px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; font-size: 0.9em; }
+    .sort-button:hover { background-color: #5a6268; }
+    .sort-button.active { background-color: #0063a3; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+
     /* Contenido de Categoría */
     .category-title { font-size: 1.8em; color: #333; border-bottom: 2px solid #0063a3; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; }
-   
+    
     /* Grilla de Videos Responsiva */
     .video-grid { display: grid; gap: 25px; grid-template-columns: 1fr; }
     @media (min-width: 700px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1050px) { .video-grid { grid-template-columns: repeat(3, 1fr); } }
-       
+        
     /* Tarjetas (para videos y mapas) */
     .card { background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
-    .card-as-link { cursor: pointer; } /* MODIFICADO: Añade cursor para tarjetas clicables */
+    .card-as-link { cursor: pointer; }
     .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background-color: #000; }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     .card-content { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
@@ -48,26 +54,26 @@
     /* Grilla para los mapas */
     .maps-grid-container { display: grid; gap: 20px; grid-template-columns: 1fr; }
     @media (min-width: 769px) { .maps-grid-container { grid-template-columns: repeat(2, 1fr); } }
-   
-    /* Estilos para la tabla de Lotes */
+    
+    /* --- ¡ACTUALIZADO! Estilos para la tabla de Lotes centrada --- */
     .table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .lotes-table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 0.9em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; }
+    .lotes-table th, .lotes-table td { padding: 12px 15px; border: 1px solid #ddd; text-align: center; } /* MODIFICADO */
     .lotes-table th { background-color: #0063a3; color: white; font-weight: bold; }
     .lotes-table tbody tr { background-color: #ffffff; transition: background-color 0.2s; }
     .lotes-table tbody tr:nth-child(even) { background-color: #eaf4ff; }
     .lotes-table tbody tr:hover { background-color: #dcecfc; }
-   
+    
     /* Pie de página */
     .footer { background-color: white; color: #888; text-align: center; padding: 20px 10px; border-top: 1px solid #ddd; margin-top: auto; }
     .footer p { margin: 0; font-size: 0.9em; }
-   
+    
     /* Media Queries para Responsividad General */
     @media (max-width: 768px) {
       .map-container { width: 95%; }
       .event-title { font-size: 1.6em; }
       .event-tag { font-size: 1.0em; }
-      .nav-button { padding: 8px 15px; font-size: 0.9em; }
+      .nav-button, .sort-button { padding: 8px 15px; font-size: 0.9em; }
       .lotes-table { font-size: 0.8em; }
       .lotes-table th, .lotes-table td { padding: 8px 10px; }
     }
@@ -110,5 +116,6 @@
     <footer class="footer">
       <p>Vicar Ganadera S.A. - Consignatarios desde 1964 - Remates Feria en Victorica - Toay - General Acha</p>
     </footer>
+  
 </body>
 </html>
