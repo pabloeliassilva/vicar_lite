@@ -19,27 +19,29 @@
     
     #event-timer-banner {
       padding: 8px 15px; text-align: center; font-weight: bold; font-size: 1.1em;
-      width: 100%; box-sizing: border-box; margin-bottom: 10px; 
+      width: 100%; box-sizing: border-box; margin-bottom: 10px;
       transition: background-color 0.5s, color 0.5s; display: none;
     }
     /* Estado Cuenta Regresiva (> 24h) */
     #event-timer-banner.countdown { background-color: var(--primary-color); color: #ffffff; }
     html.dark-mode #event-timer-banner.countdown { background-color: #F59E0B; color: #1a202c; } /* Naranja brillante */
-    
+   
     /* Estado Urgente (< 24h) */
     #event-timer-banner.urgent { background-color: #F59E0B; color: #1a202c; animation: pulse-urgent 1.5s infinite; }
     html.dark-mode #event-timer-banner.urgent { background-color: #F59E0B; color: #1a202c; }
 
+
     /* Estado En Vivo */
     #event-timer-banner.live { background-color: #39FF14; color: #000000; font-size: 1.3em; animation: pulse-live 1.5s infinite; text-shadow: 0 0 8px rgba(255,255,255,0.7); }
-    
+   
     /* Estado Finalizado */
     #event-timer-banner.finished { background-color: #000000; color: #ffffff; }
     html.dark-mode #event-timer-banner.finished { background-color: #ffffff; color: #000000; }
 
+
     @keyframes pulse-urgent { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
     @keyframes pulse-live { 0% { box-shadow: 0 0 4px #39FF14, 0 0 8px #39FF14; } 50% { box-shadow: 0 0 15px #39FF14, 0 0 25px #39FF14; } 100% { box-shadow: 0 0 4px #39FF14, 0 0 8px #39FF14; } }
-    
+   
     @media screen and (max-width: 768px) {
       #event-timer-banner { font-size: 0.85em; padding: 8px 10px; letter-spacing: -0.5px; }
       #event-timer-banner.live { font-size: 1.1em; }
@@ -162,8 +164,8 @@
           function getColorForValue(v, min, max) { if (min === max) return 'hsl(120, 100%, 45%)'; const p = (v - min) / (max - min); return `hsl(${120 - (p*120)}, 100%, 45%)`; }
           function renderTable(lotes) { if (!tbody) return; tbody.innerHTML = lotes.map(l => `<tr onclick="window.open('${l.videoUrl}','_blank')" style="cursor:pointer;"><td data-label="Corral"><b>${l.corral||''}</b></td><td data-label="Grupo"><b>${l.grupo||''}</b></td><td data-label="Categoría"><b>${l.categoria||''}</b></td><td data-label="Cantidad"><b style="color:${getColorForValue(l.cantidad,minCantidad,maxCantidad)}; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">${l.cantidad||''}</b></td><td data-label="Peso"><b style="color:${getColorForValue(l.peso,minPeso,maxPeso)}; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">${l.peso||''}</b></td><td data-label="Plazo">${l.plazo||''}</td><td data-label="Sanidad">${l.sanidad||''}</td><td data-label="China">${l.china||''}</td><td data-label="Motivo">${l.motivo||''}</td><td data-label="Reproducción">${l.reproduccion||''}</td><td data-label="Calificación">${l.calificacion||''}</td></tr>`).join(''); }
           
-        function renderGrid(lotes) { 
-            if (!gridContainer) return; 
+        function renderGrid(lotes) {
+            if (!gridContainer) return;
             gridContainer.innerHTML = lotes.map(l => `
                 <div class="card">
                     <div class="video-wrapper" onclick="window.open('${l.videoUrl || '#'}', '_blank')">
@@ -177,7 +179,7 @@
                             ${l.qrCode ? `<button class="qr-button" onclick="showQrPopup('${l.titulo.replace(/'/g, "\\'")}', '${l.qrCode}'); event.stopPropagation();">QR</button>` : ''}
                         </div>
                     </div>
-                </div>`).join(''); 
+                </div>`).join('');
         }
           function sortAndRender(col, order) { let sorted = [...lotesData]; sorted.sort((a,b) => { const vA=a[col],vB=b[col]; if (numericColumns.includes(col)) return order==='asc'?(parseFloat(vA)||0)-(parseFloat(vB)||0):(parseFloat(vB)||0)-(parseFloat(vA)||0); else { const sA=String(vA||'').toLowerCase(),sB=String(vB||'').toLowerCase(); if(sA<sB)return order==='asc'?-1:1; if(sA>sB)return order==='asc'?1:-1; return 0; }}); if(tbody)renderTable(sorted); if(gridContainer)renderGrid(sorted); }
           function handleSortClick(e) { const t=e.currentTarget,active=t.classList.contains('active'),col=t.dataset.column; let order=t.dataset.order,newOrder=active?(order==='asc'?'desc':'asc'):(numericColumns.includes(col)?'desc':'asc'); document.querySelectorAll('.sort-button,.sortable-header').forEach(el=>{el.classList.remove('active');if(el.dataset.label&&el.innerHTML!==el.dataset.label){el.innerHTML=el.dataset.label;}}); t.classList.add('active'); t.dataset.order=newOrder; t.innerHTML=`${t.dataset.label} ${newOrder==='asc'?'🔼':'🔽'}`; sortAndRender(col,newOrder); }
@@ -212,7 +214,7 @@
       const startDateStr = 'Thu Jul 03 2025 14:30:00 GMT-0300 (GMT-03:00)';
       const endDateStr = 'Thu Jul 03 2025 20:00:00 GMT-0300 (GMT-03:00)';
       if (!banner || !startDateStr || !endDateStr) { return; }
-      
+     
       // Google Sheets puede devolver fechas como '/Date(1719802800000)/', lo manejamos.
       const parseDate = (dateStr) => {
         if (typeof dateStr === 'string' && dateStr.includes('Date')) {
@@ -222,28 +224,32 @@
         return new Date(dateStr);
       };
 
+
       const startDate = parseDate(startDateStr);
       const endDate = parseDate(endDateStr);
 
+
       if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) { return; }
-      
+     
       let timerInterval = null;
+
 
       function updateTimer() {
         const now = new Date();
-        
+       
         if (now > endDate) {
           banner.style.display = 'block';
           banner.className = 'finished';
           banner.innerHTML = '🔨 Remate Finalizado';
           if (timerInterval) clearInterval(timerInterval);
 
+
         } else if (now >= startDate && now <= endDate) {
           banner.style.display = 'block';
           banner.className = 'live';
           banner.innerHTML = '🐮 AHORA 🐄';
           if (timerInterval) clearInterval(timerInterval);
-          
+         
         } else {
           banner.style.display = 'block';
           const diff = startDate - now;
@@ -251,7 +257,7 @@
           const hours = Math.floor((diff % 86400000) / 3600000);
           const minutes = Math.floor((diff % 3600000) / 60000);
           const seconds = Math.floor((diff % 60000) / 1000);
-          
+         
           let text = '';
           if (diff < 86400000) { // Menos de 24 horas
             banner.className = 'urgent';
